@@ -70,6 +70,7 @@
         android:layout_width="237dp"
         android:layout_height="50dp"
         android:text="Create an Account"
+        android:background="@color/pink"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="552dp" />
 

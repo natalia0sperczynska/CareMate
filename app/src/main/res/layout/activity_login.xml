@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <EditText
+        android:id="@+id/editTextTextPasswordLogin"
+        android:layout_width="238dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:inputType="textVisiblePassword"
+        android:text="Password"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="373dp" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddressLogin"
+        android:layout_width="238dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:text="E-mail"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="295dp" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="237dp"
+        android:layout_height="50dp"
+        android:text="Login"
+        android:background="@color/pink"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="464dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="160dp"
+        android:layout_height="75dp"
+        android:text="CareMate"
+        android:textColorLink="#E91E63"
+        android:textSize="34sp"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="92dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="252dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/caremate"
+        tools:layout_editor_absoluteX="-31dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/dontHaveAccountButton"
+        android:layout_width="108dp"
+        android:layout_height="44dp"
+        android:text="Register"
+        android:color="@android:color/darker_gray"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="750dp" />
+
+    <TextView
+        android:id="@+id/textViewdontHaveAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You don't have an account?"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="711dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
