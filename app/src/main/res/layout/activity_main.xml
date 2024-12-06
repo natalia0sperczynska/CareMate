@@ -8,26 +8,22 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/HelloWorldTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/textView3"
+        android:layout_width="160dp"
+        android:layout_height="75dp"
+        android:text="CareMate"
+        android:textColorLink="#E91E63"
+        android:textSize="34sp"
+        tools:layout_editor_absoluteX="187dp"
+        tools:layout_editor_absoluteY="89dp" />
 
     <ImageView
-        android:id="@+id/avatarImageView"
-        android:layout_width="94dp"
-        android:layout_height="83dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/HelloWorldTV"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:id="@+id/imageView3"
+        android:layout_width="252dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/caremate"
+        tools:layout_editor_absoluteX="-31dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <Button
         android:id="@+id/loginButton"
@@ -35,26 +31,28 @@
         android:layout_height="wrap_content"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/avatarImageView" />
+        tools:layout_editor_absoluteY="507dp" />
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="52dp"
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginButton" />
 
-    <ImageView
-        android:id="@+id/imageIcon"
+    <TextView
+        android:id="@+id/WelcomeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_icon_background"
-        tools:layout_editor_absoluteX="18dp"
-        tools:layout_editor_absoluteY="9dp" />
+        android:text="Welocme!"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="355dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,21 +23,16 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val textView = findViewById<TextView>(R.id.HelloWorldTV)
-        textView.text = "Hello user!"
-        val imageAvatarView=findViewById<ImageView>(R.id.avatarImageView)
-        imageAvatarView.isShown
-        val iconView= findViewById<ImageView>(R.id.imageIcon)
-        iconView.isShown
-        val loginButton = findViewById<Button>(R.id.loginButton)
-        val registerButton = findViewById<Button>(R.id.registerButton)
+        //val loginButton = findViewById<Button>(R.id.loginButton)
+        val goToRegisterActivityButton = findViewById<Button>(R.id.registerButton)
+        val goToLoginActivityButton: Button = findViewById(R.id.loginButton)
+        goToLoginActivityButton.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
 
-        loginButton.setOnClickListener {
-
-            }
-
-        registerButton.setOnClickListener{
-            val intent = Intent(this,DataEntryActivity::class.java )
+        goToRegisterActivityButton.setOnClickListener {
+            val intent = Intent(this, DataEntryActivity::class.java)
             startActivity(intent)
         }
 
