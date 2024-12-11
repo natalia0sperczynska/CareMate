@@ -22,12 +22,12 @@ import java.util.Calendar
 class DataEntryActivity : BaseActivity() {
 
     private var registerButton: Button? = null
-    private var inputName: EditText? = null
-    private var inputSurname: EditText? = null
-    private var inputEmail: EditText? = null
-    private var inputDateOfBirth: EditText? = null
-    private var inputPassword: EditText? = null
-    private var inputRepeatPassword: EditText? = null
+    private val inputName: EditText? = null
+    private val inputSurname: EditText? = null
+    private val inputEmail: EditText? = null
+    private val inputDateOfBirth: EditText? = null
+    private val inputPassword: EditText? = null
+    private val inputRepeatPassword: EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,8 +66,13 @@ class DataEntryActivity : BaseActivity() {
 }
         private fun validateRegisterDetails(): Boolean {
             return when {
-                inputEmail?.text.toString().trim { it <= ' ' }.isEmpty() -> {
+                inputEmail.toString().isEmpty() -> {
                     showErrorSnackBar("Please enter an email", true)
+                    false
+                }
+
+                !android.util.Patterns.EMAIL_ADDRESS.matcher(inputEmail.toString()).matches() -> {
+                    showErrorSnackBar("Please enter a valid email", true)
                     false
                 }
 
