@@ -24,10 +24,11 @@ class LoginActivity : BaseActivity() {
 
         loginButton?.setOnClickListener {
             logInRegisteredUser()
+            val intent = Intent(this, MainUser::class.java)
+            startActivity(intent)
         }
 
         val goToRegisterActivityButton = findViewById<Button>(R.id.dontHaveAccountButton)
-
         goToRegisterActivityButton.setOnClickListener {
             val intent = Intent(this, DataEntryActivity::class.java)
             startActivity(intent)
@@ -39,7 +40,6 @@ class LoginActivity : BaseActivity() {
      * @return True if the details are valid, otherwise False.
      */
     private fun validateLoginDetails(): Boolean {
-
         val email = inputEmail?.text.toString().trim { it <= ' ' }
         val password = inputPassword?.text.toString().trim { it <= ' ' }
 

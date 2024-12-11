@@ -6,11 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.RadioGroup
-import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.myfirstapp.firebase.FireStore
 import com.example.myfirstapp.firebase.User
@@ -41,14 +38,6 @@ class DataEntryActivity : BaseActivity() {
         inputRepeatPassword = findViewById(R.id.repeatPassword)
         val birthDateButton: Button = findViewById(R.id.birthDateButton)
         val birthDateTextView: TextView = findViewById(R.id.birthDateTextView)
-//        val nameEditText: EditText = findViewById(R.id.name)
-//        val surnameEditText:EditText = findViewById(R.id.surname)
-//        val emailEditText: EditText = findViewById(R.id.email)
-//        val passwordEditText:EditText=findViewById(R.id.password)
-//        val passwordRepeatEditText:EditText=findViewById(R.id.repeatPassword)
-//        val birthDateButton: Button = findViewById(R.id.birthDateButton)
-//        val birthDateTextView: TextView = findViewById(R.id.birthDateTextView)
-//        val registerButton: Button = findViewById(R.id.registerButton)
 
         /**
          * Sets up a listener for the birth date button to display a DatePicker dialog.
@@ -71,6 +60,8 @@ class DataEntryActivity : BaseActivity() {
 
 }
         private fun validateRegisterDetails(): Boolean {
+            val passwordPattern = Regex("^(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&])[A-Za-z\\d@\$!%*?&]{8,}$")
+
             return when {
                 inputEmail.toString().isEmpty() -> {
                     showErrorSnackBar("Please enter an email", true)
@@ -100,6 +91,11 @@ class DataEntryActivity : BaseActivity() {
 
                 inputPassword?.text.toString().trim { it <= ' ' }.isEmpty() -> {
                     showErrorSnackBar("Please enter a password", true)
+                    false
+                }
+
+                !passwordPattern.matches(inputPassword?.text.toString().trim()) -> {
+                    showErrorSnackBar("Password must be at least 8 characters, include an uppercase letter, a number, and a special character", true)
                     false
                 }
 
