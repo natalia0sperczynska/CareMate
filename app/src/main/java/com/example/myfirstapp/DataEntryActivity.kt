@@ -22,27 +22,33 @@ import java.util.Calendar
 class DataEntryActivity : BaseActivity() {
 
     private var registerButton: Button? = null
-    private val inputName: EditText? = null
-    private val inputSurname: EditText? = null
-    private val inputEmail: EditText? = null
+    private var inputName: EditText? = null
+    private var inputSurname: EditText? = null
+    private var inputEmail: EditText? = null
     private val inputDateOfBirth: EditText? = null
-    private val inputPassword: EditText? = null
-    private val inputRepeatPassword: EditText? = null
+    private var inputPassword: EditText? = null
+    private var inputRepeatPassword: EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data_entry)
 
         registerButton = findViewById(R.id.registerButton)
-
-        val nameEditText: EditText = findViewById(R.id.name)
-        val surnameEditText:EditText = findViewById(R.id.surname)
-        val emailEditText: EditText = findViewById(R.id.email)
-        val passwordEditText:EditText=findViewById(R.id.password)
-        val passwordRepeatEditText:EditText=findViewById(R.id.repeatPassword)
+        inputEmail = findViewById(R.id.email)
+        inputName = findViewById(R.id.name)
+        inputSurname = findViewById(R.id.surname)
+        inputPassword = findViewById(R.id.password)
+        inputRepeatPassword = findViewById(R.id.repeatPassword)
         val birthDateButton: Button = findViewById(R.id.birthDateButton)
         val birthDateTextView: TextView = findViewById(R.id.birthDateTextView)
-        val registerButton: Button = findViewById(R.id.registerButton)
+//        val nameEditText: EditText = findViewById(R.id.name)
+//        val surnameEditText:EditText = findViewById(R.id.surname)
+//        val emailEditText: EditText = findViewById(R.id.email)
+//        val passwordEditText:EditText=findViewById(R.id.password)
+//        val passwordRepeatEditText:EditText=findViewById(R.id.repeatPassword)
+//        val birthDateButton: Button = findViewById(R.id.birthDateButton)
+//        val birthDateTextView: TextView = findViewById(R.id.birthDateTextView)
+//        val registerButton: Button = findViewById(R.id.registerButton)
 
         /**
          * Sets up a listener for the birth date button to display a DatePicker dialog.
@@ -71,7 +77,7 @@ class DataEntryActivity : BaseActivity() {
                     false
                 }
 
-                !android.util.Patterns.EMAIL_ADDRESS.matcher(inputEmail.toString()).matches() -> {
+                !android.util.Patterns.EMAIL_ADDRESS.matcher(inputEmail?.text.toString()).matches() -> {
                     showErrorSnackBar("Please enter a valid email", true)
                     false
                 }
