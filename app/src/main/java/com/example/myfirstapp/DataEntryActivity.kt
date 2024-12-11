@@ -1,18 +1,25 @@
 package com.example.myfirstapp
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioGroup
+import android.widget.SeekBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.myfirstapp.firebase.FireStore
 import com.example.myfirstapp.firebase.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.coroutines.launch
+import java.util.Calendar
 
-class DataEntryActivity : AppCompatActivity() {
+class DataEntryActivity : BaseActivity() {
 
     private var registerButton: Button? = null
     private var inputName: EditText? = null
@@ -26,19 +33,35 @@ class DataEntryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data_entry)
 
-        registerButton = findViewById(R.id.registerButton)
-        inputEmail = findViewById(R.id.email)
-        inputName = findViewById(R.id.name)
-        inputSurname = findViewById(R.id.surname
-        inputDateOfBirth = findViewById(R.id.DateOfBirth)
-        inputPassword = findViewById(R.id.password)
-        inputRepeatPassword = findViewById(R.id.repeatPassword)
+        val nameEditText: EditText = findViewById(R.id.name)
+        val surnameEditText:EditText = findViewById(R.id.surname)
+        val emailEditText: EditText = findViewById(R.id.email)
+        val passwordEditText:EditText=findViewById(R.id.password)
+        val passwordRepeatEditText:EditText=findViewById(R.id.repeatPassword)
+        val birthDateButton: Button = findViewById(R.id.birthDateButton)
+        val birthDateTextView: TextView = findViewById(R.id.birthDateTextView)
+        val registerButton: Button = findViewById(R.id.registerButton)
 
+        /**
+         * Sets up a listener for the birth date button to display a DatePicker dialog.
+         */
+        birthDateButton.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
 
+            val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
+                val dateString = "$selectedDay-${selectedMonth + 1}-$selectedYear"
+                birthDateTextView.text = dateString
+            }, year, month, day)
+            datePickerDialog.show()
+        }
         registerButton?.setOnClickListener {
             registerUser()
         }
 
+}
         private fun validateRegisterDetails(): Boolean {
             return when {
                 inputEmail?.text.toString().trim { it <= ' ' }.isEmpty() -> {
@@ -86,10 +109,16 @@ class DataEntryActivity : AppCompatActivity() {
             if (validateRegisterDetails()) {
                 val email = inputEmail?.text.toString().trim { it <= ' ' }
                 val password = inputPassword?.text.toString().trim { it <= ' ' }
+                val repeatPassword = inputRepeatPassword?.text.toString().trim { it <= ' ' }
+                val dateOfBirth = inputDateOfBirth?.text.toString().trim{ it <= ' ' }
                 val name = inputName?.text.toString().trim { it <= ' ' }
                 val surname = inputSurname?.text.toString().trim { it <= ' ' }
 
-                FirebaseAuth.getInstance().createUserWithEmailAndPassowr(email, password)
+                if (password != repeatPassword) {
+                    showErrorSnackBar("Passwords do not match", true)
+                    return
+                }
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             val firebaseUser: FirebaseUser = task.result!!.user!!
@@ -102,18 +131,26 @@ class DataEntryActivity : AppCompatActivity() {
                                 id = firebaseUser.uid,
                                 name = name,
                                 surname = surname,
-                                registeredUser = true,
-                                email = email
+                                email=email,
+                                dateOfBirth = dateOfBirth,
+                                profilePictureUrl = ""
                             )
-                            FirestoreClass().registerUserFS(this@DataEntryActivity, user)
+                            lifecycleScope.launch {
+                                try {
+                                    val firestoreClass = FireStore()
+                                    firestoreClass.registerOrUpdateUser(user)
+                                    Toast.makeText(this@DataEntryActivity, "Data saved successfully!", Toast.LENGTH_SHORT).show()
+                                } catch (e: Exception) {
+                                    Toast.makeText(this@DataEntryActivity, "Failed to save data: ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
+                            }
 
-                            FirestoreAuth.getInstance().signOut()
+                            FirebaseAuth.getInstance().signOut()
                             finish()
                         } else {
                             showErrorSnackBar(task.exception!!.message.toString(), true)
                         }
                     }
-            }
         }
 
         fun userRegistrationSuccess() {

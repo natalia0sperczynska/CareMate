@@ -10,4 +10,7 @@
     <color name="grey">#504E4E</color>
     <color name="pink">#CE70B5</color>
     <color name="blue">#6B86AB</color>
+
+    <color name="colorSnackBarError">#D50B0B</color>
+    <color name="colorSnackBarSuccess">#F519D120</color>
 </resources>

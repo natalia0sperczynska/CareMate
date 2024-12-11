@@ -5,8 +5,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private var inputEmail: EditText? = null
     private var inputPassword: EditText? = null
@@ -63,5 +64,35 @@ class LoginActivity : AppCompatActivity() {
     /**
      * Logs in a registered user using Firebase Authentication.
      */
-    private fun logInRegisteredUser() {}
+    private fun logInRegisteredUser() {
+        if (validateLoginDetails()) {
+            val email = inputEmail?.text.toString().trim { it <= ' ' }
+            val password = inputPassword?.text.toString().trim { it <= ' ' }
+
+            // Sign in with FirebaseAuth
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        showErrorSnackBar("You are logged in successfully.", false)
+                        goToMainActivity()
+                        finish()
+                    } else {
+                        showErrorSnackBar(task.exception?.message.toString(), true)
+                    }
+                }
+        }
+    }
+
+    /**
+     * Navigates to the main activity after successful login and passes the user's UID to the main activity.
+     */
+    open fun goToMainActivity() {
+        val user = FirebaseAuth.getInstance().currentUser
+        val email = user?.email.orEmpty()
+
+        val intent = Intent(this, MainActivity::class.java).apply {
+            putExtra("uID", email)
+        }
+        startActivity(intent)
+    }
 }
