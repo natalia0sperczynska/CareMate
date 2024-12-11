@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         //val loginButton = findViewById<Button>(R.id.loginButton)
         val goToRegisterActivityButton = findViewById<Button>(R.id.registerButton)
         val goToLoginActivityButton: Button = findViewById(R.id.loginButton)
+
         goToLoginActivityButton.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

@@ -7,8 +7,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.firebaseauthdemo.firebase.FirestoreClass
-import com.example.firebaseauthdemo.firebase.User
+import com.example.myfirstapp.firebase.FireStore
+import com.example.myfirstapp.firebase.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -27,12 +27,12 @@ class DataEntryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_data_entry)
 
         registerButton = findViewById(R.id.registerButton)
-        inputEmail = findViewById(R.id.inputEmail)
-        inputName = findViewById(R.id.inputName)
-        inputSurname = findViewById(R.id.inputSurname)
-        inputDateOfBirth = findViewById(R.id.inputDateOfBirth)
-        inputPassword = findViewById(R.id.inputPassword)
-        inputRepeatPassword = findViewById(R.id.inputRepeatPassword)
+        inputEmail = findViewById(R.id.email)
+        inputName = findViewById(R.id.name)
+        inputSurname = findViewById(R.id.surname
+        inputDateOfBirth = findViewById(R.id.DateOfBirth)
+        inputPassword = findViewById(R.id.password)
+        inputRepeatPassword = findViewById(R.id.repeatPassword)
 
 
         registerButton?.setOnClickListener {
