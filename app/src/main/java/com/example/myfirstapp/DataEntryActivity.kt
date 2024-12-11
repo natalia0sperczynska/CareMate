@@ -34,21 +34,15 @@ class DataEntryActivity : BaseActivity() {
         setContentView(R.layout.activity_data_entry)
 
         registerButton = findViewById(R.id.registerButton)
-        inputName = findViewById(R.id.name)
-        inputSurname = findViewById(R.id.surname)
-        inputEmail = findViewById(R.id.email)
-        inputDateOfBirth = findViewById(R.id.birthDateTextView)
-        inputPassword = findViewById(R.id.password)
-        inputRepeatPassword = findViewById(R.id.repeatPassword)
 
-//        val nameEditText: EditText = findViewById(R.id.name)
-//        val surnameEditText:EditText = findViewById(R.id.surname)
-//        val emailEditText: EditText = findViewById(R.id.email)
-//        val passwordEditText:EditText=findViewById(R.id.password)
-//        val passwordRepeatEditText:EditText=findViewById(R.id.repeatPassword)
+        val nameEditText: EditText = findViewById(R.id.name)
+        val surnameEditText:EditText = findViewById(R.id.surname)
+        val emailEditText: EditText = findViewById(R.id.email)
+        val passwordEditText:EditText=findViewById(R.id.password)
+        val passwordRepeatEditText:EditText=findViewById(R.id.repeatPassword)
         val birthDateButton: Button = findViewById(R.id.birthDateButton)
         val birthDateTextView: TextView = findViewById(R.id.birthDateTextView)
-//        val registerButton: Button = findViewById(R.id.registerButton)
+        val registerButton: Button = findViewById(R.id.registerButton)
 
         /**
          * Sets up a listener for the birth date button to display a DatePicker dialog.
