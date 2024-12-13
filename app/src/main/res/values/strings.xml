@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyFirstApp</string>
+    <string name="app_name">CareMate</string>
     <string name="err_msg_enter_email">Please enter e-mail</string>
     <string name="err_msg_enter_password">Please enter password</string>
 </resources>

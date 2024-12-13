@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_height">58dp</dimen>
+    <dimen name="default_start_margin">16dp</dimen>
+    <dimen name="default_end_margin">16dp</dimen>
+    <dimen name="card_view_elevation">12dp</dimen>
+</resources>

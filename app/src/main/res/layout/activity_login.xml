@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CareMate"
-        android:textColor="#E91E63"
+        android:textColor="@color/pink"
         android:textSize="34sp"
         app:layout_constraintTop_toBottomOf="@id/imageView2"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,63 +34,72 @@
         android:layout_marginTop="16dp" />
 
     <!-- Email Input -->
+
+    <!-- Password Input -->
+
+    <!-- Login Button -->
+
+    <!-- "Don't Have Account" Text -->
+
+    <!-- Register Button -->
+
     <EditText
         android:id="@+id/editTextTextEmailAddressLogin"
         android:layout_width="238dp"
         android:layout_height="51dp"
+        android:layout_marginTop="68dp"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
-    <!-- Password Input -->
     <EditText
         android:id="@+id/editTextTextPasswordLogin"
         android:layout_width="238dp"
         android:layout_height="51dp"
+        android:layout_marginTop="44dp"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/editTextTextEmailAddressLogin"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTextEmailAddressLogin" />
 
-    <!-- Login Button -->
     <Button
         android:id="@+id/loginButton"
         android:layout_width="237dp"
         android:layout_height="50dp"
-        android:text="Login"
+        android:layout_marginTop="64dp"
         android:backgroundTint="@color/pink"
-        app:layout_constraintTop_toBottomOf="@id/editTextTextPasswordLogin"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTextPasswordLogin" />
 
-    <!-- "Don't Have Account" Text -->
     <TextView
         android:id="@+id/textViewdontHaveAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
         android:text="You don't have an account?"
-        app:layout_constraintTop_toBottomOf="@id/loginButton"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginButton" />
 
-    <!-- Register Button -->
     <Button
         android:id="@+id/dontHaveAccountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Register"
-        android:textSize="12sp"
         android:textColor="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@id/textViewdontHaveAccount"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewdontHaveAccount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

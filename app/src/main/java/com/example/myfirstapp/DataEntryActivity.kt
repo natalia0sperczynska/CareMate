@@ -142,7 +142,12 @@ class DataEntryActivity : BaseActivity() {
                                 surname = surname,
                                 email=email,
                                 dateOfBirth = dateOfBirth,
-                                profilePictureUrl = ""
+                                phoneNumber = "",
+                                profilePictureUrl = "" ,
+                                address = mapOf(), // Default empty map
+                                allergies = listOf(),
+                                diseases= listOf(),
+                                medications = listOf()
                             )
                             lifecycleScope.launch {
                                 try {
