@@ -74,7 +74,7 @@ class LoginActivity : BaseActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         showErrorSnackBar("You are logged in successfully.", false)
-                        goToMainActivity()
+                        goToMainUser()
                         finish()
                     } else {
                         showErrorSnackBar(task.exception?.message.toString(), true)
@@ -86,11 +86,11 @@ class LoginActivity : BaseActivity() {
     /**
      * Navigates to the main activity after successful login and passes the user's UID to the main activity.
      */
-    open fun goToMainActivity() {
+    open fun goToMainUser() {
         val user = FirebaseAuth.getInstance().currentUser
         val email = user?.email.orEmpty()
 
-        val intent = Intent(this, MainActivity::class.java).apply {
+        val intent = Intent(this, MainUser::class.java).apply {
             putExtra("uID", email)
         }
         startActivity(intent)

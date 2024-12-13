@@ -32,7 +32,7 @@ class MainUser : AppCompatActivity() {
         }
         val updateData: Button = findViewById(R.id.updatedataButton)
 
-        logout.setOnClickListener {
+        updateData.setOnClickListener {
             val intent = Intent(this, UpdateDataActivity::class.java)
             startActivity(intent)
         }
