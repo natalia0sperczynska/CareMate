@@ -1,5 +1,6 @@
 package com.example.myfirstapp.firebase
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.tasks.await
 
 
@@ -55,7 +56,6 @@ class FireStore {
             val filteredData = updatedData.filterValues { value ->
                 value != null && !(value is String && value.isBlank())
             }
-
             // If there's nothing to update, exit early
             if (filteredData.isEmpty()) return
 
@@ -64,9 +64,10 @@ class FireStore {
                 .document(userId)
                 .update(filteredData)
                 .await() // Suspends until the operation is complete
+
         } catch (e: Exception) {
-            // Throw an exception with a descriptive message if an error occurs
             throw Exception("Error updating user data: ${e.message}")
         }
     }
+
 }
