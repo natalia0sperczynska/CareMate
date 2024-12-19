@@ -24,8 +24,6 @@ class LoginActivity : BaseActivity() {
 
         loginButton?.setOnClickListener {
             logInRegisteredUser()
-            val intent = Intent(this, MainUser::class.java)
-            startActivity(intent)
         }
 
         val goToRegisterActivityButton = findViewById<Button>(R.id.dontHaveAccountButton)
@@ -75,7 +73,6 @@ class LoginActivity : BaseActivity() {
                     if (task.isSuccessful) {
                         showErrorSnackBar("You are logged in successfully.", false)
                         goToMainUser()
-                        finish()
                     } else {
                         showErrorSnackBar(task.exception?.message.toString(), true)
                     }
@@ -84,15 +81,18 @@ class LoginActivity : BaseActivity() {
     }
 
     /**
-     * Navigates to the main activity after successful login and passes the user's UID to the main activity.
+     * Navigates to the main user activity after successful login and passes the user's UID to the main activity.
      */
     open fun goToMainUser() {
         val user = FirebaseAuth.getInstance().currentUser
-        val email = user?.email.orEmpty()
+        val uid = user?.uid // User UID
+        val email = user?.email // User email
 
         val intent = Intent(this, MainUser::class.java).apply {
-            putExtra("uID", email)
+            putExtra("uID", uid)
+            putExtra("email",email)
         }
         startActivity(intent)
+        finish()
     }
 }
