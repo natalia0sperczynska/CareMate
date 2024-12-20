@@ -154,13 +154,13 @@ class DataEntryActivity : BaseActivity() {
                                     val firestoreClass = FireStore()
                                     firestoreClass.registerOrUpdateUser(user)
                                     Toast.makeText(this@DataEntryActivity, "Data saved successfully!", Toast.LENGTH_SHORT).show()
+                                    FirebaseAuth.getInstance().signOut()
+                                    finish()
                                 } catch (e: Exception) {
                                     Toast.makeText(this@DataEntryActivity, "Failed to save data: ${e.message}", Toast.LENGTH_SHORT).show()
                                 }
                             }
 
-                            FirebaseAuth.getInstance().signOut()
-                            finish()
                         } else {
                             showErrorSnackBar(task.exception!!.message.toString(), true)
                         }
