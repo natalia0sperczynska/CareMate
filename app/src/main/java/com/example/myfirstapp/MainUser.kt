@@ -24,10 +24,10 @@ class MainUser : AppCompatActivity() {
         //enableEdgeToEdge()
         setContentView(R.layout.activity_main_user)
 
-       val userId=intent.getStringExtra("uID")
-       val email = intent.getStringExtra("email")
+       val userId=auth.currentUser?.uid
 
-       findViewById<TextView>(R.id.message).text = "Welcome, ${email ?: "User"}!"
+
+       findViewById<TextView>(R.id.message).text = "Welcome!"
        if (userId != null) {
            loadUserData(userId)
        }

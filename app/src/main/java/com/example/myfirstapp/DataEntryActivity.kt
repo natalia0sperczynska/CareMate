@@ -48,131 +48,145 @@ class DataEntryActivity : BaseActivity() {
             val month = calendar.get(Calendar.MONTH)
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-            val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
-                val dateString = "$selectedDay-${selectedMonth + 1}-$selectedYear"
-                birthDateTextView.text = dateString
-            }, year, month, day)
+            val datePickerDialog =
+                DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
+                    val dateString = "$selectedDay-${selectedMonth + 1}-$selectedYear"
+                    birthDateTextView.text = dateString
+                }, year, month, day)
             datePickerDialog.show()
         }
         registerButton?.setOnClickListener {
             registerUser()
         }
 
-}
-        private fun validateRegisterDetails(): Boolean {
-            val passwordPattern = Regex("^(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&])[A-Za-z\\d@\$!%*?&]{8,}$")
+    }
 
-            return when {
-                inputEmail.toString().isEmpty() -> {
-                    showErrorSnackBar("Please enter an email", true)
-                    false
-                }
+    private fun validateRegisterDetails(): Boolean {
+        val passwordPattern = Regex("^(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&])[A-Za-z\\d@\$!%*?&]{8,}$")
 
-                !android.util.Patterns.EMAIL_ADDRESS.matcher(inputEmail?.text.toString()).matches() -> {
-                    showErrorSnackBar("Please enter a valid email", true)
-                    false
-                }
-
-                inputName?.text.toString().trim { it <= ' ' }.isEmpty() -> {
-                    showErrorSnackBar("Please enter a name", true)
-                    false
-                }
-
-                inputSurname?.text.toString().trim { it <= ' ' }.isEmpty() -> {
-                    showErrorSnackBar("Please enter a surname", true)
-                    false
-                }
-
-                inputDateOfBirth?.text.toString().trim { it <= ' ' }.isEmpty() -> {
-                    showErrorSnackBar("Please enter a date of birth", true)
-                    false
-
-                }
-
-                inputPassword?.text.toString().trim { it <= ' ' }.isEmpty() -> {
-                    showErrorSnackBar("Please enter a password", true)
-                    false
-                }
-
-                !passwordPattern.matches(inputPassword?.text.toString().trim()) -> {
-                    showErrorSnackBar("Password must be at least 8 characters, include an uppercase letter, a number, and a special character", true)
-                    false
-                }
-
-                inputRepeatPassword?.text.toString().trim { it <= ' ' }.isEmpty() -> {
-                    showErrorSnackBar("Please enter a repeat password", true)
-                    false
-                }
-
-                else -> true
+        return when {
+            inputEmail.toString().isEmpty() -> {
+                showErrorSnackBar("Please enter an email", true)
+                false
             }
+
+            !android.util.Patterns.EMAIL_ADDRESS.matcher(inputEmail?.text.toString()).matches() -> {
+                showErrorSnackBar("Please enter a valid email", true)
+                false
+            }
+
+            inputName?.text.toString().trim { it <= ' ' }.isEmpty() -> {
+                showErrorSnackBar("Please enter a name", true)
+                false
+            }
+
+            inputSurname?.text.toString().trim { it <= ' ' }.isEmpty() -> {
+                showErrorSnackBar("Please enter a surname", true)
+                false
+            }
+
+            inputDateOfBirth?.text.toString().trim { it <= ' ' }.isEmpty() -> {
+                showErrorSnackBar("Please enter a date of birth", true)
+                false
+
+            }
+
+            inputPassword?.text.toString().trim { it <= ' ' }.isEmpty() -> {
+                showErrorSnackBar("Please enter a password", true)
+                false
+            }
+
+            !passwordPattern.matches(inputPassword?.text.toString().trim()) -> {
+                showErrorSnackBar(
+                    "Password must be at least 8 characters, include an uppercase letter, a number, and a special character",
+                    true
+                )
+                false
+            }
+
+            inputRepeatPassword?.text.toString().trim { it <= ' ' }.isEmpty() -> {
+                showErrorSnackBar("Please enter a repeat password", true)
+                false
+            }
+
+            else -> true
         }
+    }
 
-        fun goToLogin(view: View) {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+    fun goToLogin(view: View) {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 
-        private fun registerUser() {
-            if (validateRegisterDetails()) {
-                val email = inputEmail?.text.toString().trim { it <= ' ' }
-                val password = inputPassword?.text.toString().trim { it <= ' ' }
-                val repeatPassword = inputRepeatPassword?.text.toString().trim { it <= ' ' }
-                val dateOfBirth = inputDateOfBirth?.text.toString().trim{ it <= ' ' }
-                val name = inputName?.text.toString().trim { it <= ' ' }
-                val surname = inputSurname?.text.toString().trim { it <= ' ' }
+    private fun registerUser() {
+        if (validateRegisterDetails()) {
+            val email = inputEmail?.text.toString().trim { it <= ' ' }
+            val password = inputPassword?.text.toString().trim { it <= ' ' }
+            val repeatPassword = inputRepeatPassword?.text.toString().trim { it <= ' ' }
+            val dateOfBirth = inputDateOfBirth?.text.toString().trim { it <= ' ' }
+            val name = inputName?.text.toString().trim { it <= ' ' }
+            val surname = inputSurname?.text.toString().trim { it <= ' ' }
 
-                if (password != repeatPassword) {
-                    showErrorSnackBar("Passwords do not match", true)
-                    return
-                }
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            val firebaseUser: FirebaseUser = task.result!!.user!!
-                            showErrorSnackBar(
-                                "You are registered successfully. Your user id is ${firebaseUser.uid}",
-                                false
-                            )
+            if (password != repeatPassword) {
+                showErrorSnackBar("Passwords do not match", true)
+                return
+            }
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val firebaseUser: FirebaseUser = task.result!!.user!!
+                        showErrorSnackBar(
+                            "You are registered successfully. Your user id is ${firebaseUser.uid}",
+                            false
+                        )
 
-                            val user = User(
-                                id = firebaseUser.uid,
-                                name = name,
-                                surname = surname,
-                                email=email,
-                                dateOfBirth = dateOfBirth,
-                                phoneNumber = "",
-                                profilePictureUrl = "" ,
-                                address = mapOf(), // Default empty map
-                                allergies = listOf(),
-                                diseases= listOf(),
-                                medications = listOf()
-                            )
-                            lifecycleScope.launch {
-                                try {
-                                    val firestoreClass = FireStore()
-                                    firestoreClass.registerOrUpdateUser(user)
-                                    Toast.makeText(this@DataEntryActivity, "Data saved successfully!", Toast.LENGTH_SHORT).show()
-                                } catch (e: Exception) {
-                                    Toast.makeText(this@DataEntryActivity, "Failed to save data: ${e.message}", Toast.LENGTH_SHORT).show()
-                                }
+                        val user = User(
+                            id = firebaseUser.uid,
+                            name = name,
+                            surname = surname,
+                            email = email,
+                            dateOfBirth = dateOfBirth,
+                            phoneNumber = "",
+                            profilePictureUrl = "",
+                            address = mapOf(), // Default empty map
+                            allergies = listOf(),
+                            diseases = listOf(),
+                            medications = listOf()
+                        )
+                        lifecycleScope.launch {
+                            try {
+                                val firestoreClass = FireStore()
+                                firestoreClass.registerOrUpdateUser(user)
+                                Toast.makeText(
+                                    this@DataEntryActivity,
+                                    "Data saved successfully!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } catch (e: Exception) {
+                                Toast.makeText(
+                                    this@DataEntryActivity,
+                                    "Failed to save data: ${e.message}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
-
-                            FirebaseAuth.getInstance().signOut()
-                            finish()
-                        } else {
-                            showErrorSnackBar(task.exception!!.message.toString(), true)
                         }
+
+                        FirebaseAuth.getInstance().signOut()
+                        finish()
+                    } else {
+                        showErrorSnackBar(task.exception!!.message.toString(), true)
                     }
+                }
         }
 
-        fun userRegistrationSuccess() {
-            Toast.makeText(
-                this@DataEntryActivity,
-                "You are registered successfully.",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+    }
+
+    fun userRegistrationSuccess() {
+        Toast.makeText(
+            this@DataEntryActivity,
+            "You are registered successfully.",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }
