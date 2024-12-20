@@ -85,14 +85,11 @@ class LoginActivity : BaseActivity() {
      */
     open fun goToMainUser() {
         val user = FirebaseAuth.getInstance().currentUser
-        val uid = user?.uid // User UID
-        val email = user?.email // User email
+        val email = user?.email.orEmpty() // User email
 
         val intent = Intent(this, MainUser::class.java).apply {
-            putExtra("uID", uid)
-            putExtra("email",email)
+            putExtra("uID", email)
         }
         startActivity(intent)
-        finish()
     }
 }
