@@ -11,6 +11,7 @@
     <color name="purple">#6c5dd2</color>
     <color name="pink">#f5a2b9</color>
     <color name="blue">#6B86AB</color>
+    <color name="background">#F0EAF2</color>
 
     <color name="colorSnackBarError">#D50B0B</color>
     <color name="colorSnackBarSuccess">#F519D120</color>

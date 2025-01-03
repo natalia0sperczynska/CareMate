@@ -8,13 +8,22 @@
 
     <!-- Logo Image -->
     <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/top_signup" />
+
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="217dp"
         android:layout_height="188dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/caremate"
+        app:srcCompat="@drawable/caremate_logo"
         tools:ignore="ContentDescription" />
 
     <!-- Title Text -->
@@ -23,9 +32,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CareMate"
-        android:textColor="@color/pink"
+        android:textColor="@color/black"
         android:textSize="34sp"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -52,6 +61,7 @@
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:hint="Name"
             android:inputType="text" />
 
@@ -60,6 +70,7 @@
             android:id="@+id/surname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:hint="Surname"
             android:inputType="text" />
 
@@ -68,7 +79,8 @@
             android:id="@+id/birthDateButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:gravity="center"
+            android:background="@drawable/button_backgound_purple"
             android:text="Date of Birth" />
 
         <!-- Email -->
@@ -87,12 +99,14 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:hint="Email"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword" />
@@ -102,6 +116,7 @@
             android:id="@+id/repeatPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:hint="Repeat Password"
             android:inputType="textPassword" />
 
@@ -113,7 +128,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="52dp"
-        android:backgroundTint="@color/pink"
+        android:background="@drawable/button_background_pink"
         android:text="Create an Account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,6 +150,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
+        android:background="@drawable/button_background_grey"
         android:text="Login"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
