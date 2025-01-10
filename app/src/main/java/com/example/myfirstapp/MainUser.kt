@@ -53,6 +53,14 @@ class MainUser : AppCompatActivity() {
            startActivity(intent)
        }
 
+        val calculateBMI: LinearLayout = findViewById(R.id.BMI)
+
+
+        calculateBMI.setOnClickListener {
+            val intent = Intent(this, BMIActivity::class.java)
+            startActivity(intent)
+        }
+
 //        val notificationsButton: LinearLayout = findViewById(R.id.imageView12).parent
 //        notificationsButton.setOnClickListener {
 //            val intent = Intent(this, NotificationsActivity::class.java)

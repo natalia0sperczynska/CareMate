@@ -48,14 +48,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:gravity="center"
             android:hint="Surname" />
 
         <EditText
             android:id="@+id/nameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:hint="Name" />
 
         <EditText
@@ -63,15 +61,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:gravity="center"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/phoneInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:hint="Phone Number"
             android:inputType="phone" />
 
@@ -79,28 +75,24 @@
             android:id="@+id/addressInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:hint="Address (City, Street, Postcode)" />
 
         <EditText
             android:id="@+id/diseasesInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:hint="Diseases (comma seperated)" />
 
         <EditText
             android:id="@+id/allergiesInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:hint="Allergies (comma seperated)" />
 
         <EditText
             android:id="@+id/medicationsInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:hint="Medications (comma seperated)" />
 
     </LinearLayout>

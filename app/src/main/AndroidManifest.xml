@@ -38,6 +38,13 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".BMIActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light" />
     </application>
+
+<!--    AIzaSyAlH6UZKek2uW1OTnq1JYSq84TLuvDhMa8-->
 
 </manifest>

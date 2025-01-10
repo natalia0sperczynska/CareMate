@@ -52,4 +52,5 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation (libs.glide)
     annotationProcessor (libs.compiler)
+
 }
