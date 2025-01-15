@@ -9,6 +9,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.myfirstapp.firebase.FireStore
+import com.google.firebase.auth.FirebaseAuth
 
 class BMIActivity : AppCompatActivity() {
     private lateinit var inputHeight: EditText
@@ -16,6 +18,10 @@ class BMIActivity : AppCompatActivity() {
     private lateinit var result: TextView
     private lateinit var calculateButton: Button
     private lateinit var goBack: Button
+
+    private val auth = FirebaseAuth.getInstance()
+    private val firestoreClass = FireStore()
+    val email = FirebaseAuth.getInstance().currentUser?.email.orEmpty()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

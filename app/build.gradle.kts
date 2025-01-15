@@ -52,5 +52,8 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation (libs.glide)
     annotationProcessor (libs.compiler)
+    implementation (libs.material.v190)
+    implementation (libs.glide.v4151)
+    annotationProcessor (libs.compiler.v4151)
 
 }

@@ -52,6 +52,14 @@ class MainUser : AppCompatActivity() {
            val intent = Intent(this, UpdateDataActivity::class.java)
            startActivity(intent)
        }
+        val doctors: LinearLayout = findViewById(R.id.doctors)
+
+
+        doctors.setOnClickListener {
+            val intent = Intent(this, DoctorsRecyclerView::class.java)
+            startActivity(intent)
+        }
+
 
         val calculateBMI: LinearLayout = findViewById(R.id.BMI)
 
