@@ -32,6 +32,8 @@ class BMIActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val userId=auth.currentUser?.uid
+        val text: TextView = findViewById(R.id.currentUser)
         inputHeight = findViewById(R.id.height)
         inputWeight = findViewById(R.id.weight)
         result = findViewById(R.id.result)
