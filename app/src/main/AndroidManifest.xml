@@ -13,25 +13,25 @@
         android:theme="@style/Theme.MyFirstApp"
         tools:targetApi="31">
         <activity
-            android:name=".DoctorsRecyclerView"
+            android:name=".doctorsView.DoctorsRecyclerView"
             android:exported="false" />
         <activity
-            android:name=".UpdateDataActivity"
+            android:name=".updateData.UpdateDataActivity"
             android:exported="false" />
         <activity
-            android:name=".MainUser"
+            android:name=".mainViews.MainUser"
             android:exported="false" />
         <activity
-            android:name=".BaseActivity"
+            android:name=".mainViews.BaseActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".BMIActivity"
+            android:name=".bmi.BMIActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".mainViews.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,7 +40,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DataEntryActivity"
+            android:name=".register.DataEntryActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light" />

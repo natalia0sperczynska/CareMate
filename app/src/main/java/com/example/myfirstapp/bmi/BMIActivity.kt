@@ -1,4 +1,4 @@
-package com.example.myfirstapp
+package com.example.myfirstapp.bmi
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.myfirstapp.R
 import com.example.myfirstapp.firebase.FireStore
+import com.example.myfirstapp.mainViews.MainUser
 import com.google.firebase.auth.FirebaseAuth
 
 class BMIActivity : AppCompatActivity() {
@@ -20,7 +22,6 @@ class BMIActivity : AppCompatActivity() {
     private lateinit var goBack: Button
 
     private val auth = FirebaseAuth.getInstance()
-    private val firestoreClass = FireStore()
     val email = FirebaseAuth.getInstance().currentUser?.email.orEmpty()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +34,6 @@ class BMIActivity : AppCompatActivity() {
             insets
         }
         val userId=auth.currentUser?.uid
-        val text: TextView = findViewById(R.id.currentUser)
         inputHeight = findViewById(R.id.height)
         inputWeight = findViewById(R.id.weight)
         result = findViewById(R.id.result)
@@ -61,7 +61,7 @@ class BMIActivity : AppCompatActivity() {
             result.text= "Height and weight must be positive numbers"
             return
         }
-        val bmi = weight/(height * height)
+        val bmi = weight/(height/100 * height/100)
         val message = displayMessage(bmi)
         result.text = String.format("Your BMI: %.2f $message", bmi)
     }

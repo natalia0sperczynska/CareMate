@@ -1,4 +1,4 @@
-package com.example.myfirstapp
+package com.example.myfirstapp.doctorsView
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,9 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myfirstapp.mainViews.MainUser
+import com.example.myfirstapp.R
+import com.example.myfirstapp.firebase.Doctor
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 

@@ -1,7 +1,8 @@
-package com.example.myfirstapp
+package com.example.myfirstapp.mainViews
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.myfirstapp.R
 import com.google.android.material.snackbar.Snackbar
 
 open class BaseActivity : AppCompatActivity() {

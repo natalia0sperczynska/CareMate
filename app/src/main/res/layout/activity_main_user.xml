@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0EAF2"
-    tools:context=".MainUser">
+    tools:context=".mainViews.MainUser">
 
     <!-- ScrollView to handle the vertical scrolling of the content -->
 

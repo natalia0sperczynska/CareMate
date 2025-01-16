@@ -1,4 +1,4 @@
-package com.example.myfirstapp
+package com.example.myfirstapp.register
 
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -9,8 +9,11 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import com.example.myfirstapp.login.LoginActivity
+import com.example.myfirstapp.R
 import com.example.myfirstapp.firebase.FireStore
 import com.example.myfirstapp.firebase.User
+import com.example.myfirstapp.mainViews.BaseActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.launch

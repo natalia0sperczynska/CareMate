@@ -1,10 +1,13 @@
-package com.example.myfirstapp
+package com.example.myfirstapp.login
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
+import com.example.myfirstapp.R
+import com.example.myfirstapp.mainViews.BaseActivity
+import com.example.myfirstapp.mainViews.MainUser
+import com.example.myfirstapp.register.DataEntryActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : BaseActivity() {

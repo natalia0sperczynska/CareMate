@@ -1,19 +1,19 @@
-package com.example.myfirstapp
+package com.example.myfirstapp.mainViews
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.myfirstapp.bmi.BMIActivity
+import com.example.myfirstapp.R
+import com.example.myfirstapp.doctorsView.DoctorsRecyclerView
 import com.example.myfirstapp.firebase.FireStore
+import com.example.myfirstapp.updateData.UpdateDataActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.auth.User
 import kotlinx.coroutines.launch
 
 class MainUser : AppCompatActivity() {
@@ -98,7 +98,7 @@ class MainUser : AppCompatActivity() {
                 if (data != null) {
                     val userName=data.getValue("name")
                     welcomeText.text = "Good to see you again $userName!"
-                    Toast.makeText(this@MainUser, "Welcome back!", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@MainUser, "Welcome back!", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@MainUser, "No user data found.", Toast.LENGTH_SHORT).show()
                 }

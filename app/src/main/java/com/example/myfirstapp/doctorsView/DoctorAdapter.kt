@@ -1,4 +1,4 @@
-package com.example.myfirstapp
+package com.example.myfirstapp.doctorsView
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.myfirstapp.R
+import com.example.myfirstapp.firebase.Doctor
 
 class DoctorAdapter(private val doctors: List<Doctor>) :
     RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
