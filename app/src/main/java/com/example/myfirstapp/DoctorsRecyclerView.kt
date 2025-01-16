@@ -1,7 +1,9 @@
 package com.example.myfirstapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +18,8 @@ class DoctorsRecyclerView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctors)
+
+        val goBackToMainUser: Button = findViewById(R.id.goBackButton)
 
         val recyclerView: RecyclerView = findViewById(R.id.RecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -32,5 +36,10 @@ class DoctorsRecyclerView : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.e("DoctorsRecyclerView", "Error fetching documents", e)
             }
+
+        goBackToMainUser.setOnClickListener {
+            val intent = Intent(this, MainUser::class.java)
+            startActivity(intent)
+        }
     }
 }
