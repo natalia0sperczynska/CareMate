@@ -14,6 +14,7 @@ import com.example.myfirstapp.R
 import com.example.myfirstapp.firebase.FireStore
 import com.example.myfirstapp.firebase.User
 import com.example.myfirstapp.mainViews.BaseActivity
+import com.example.myfirstapp.mainViews.MainAdminActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.launch
@@ -39,8 +40,15 @@ class DataEntryActivity : BaseActivity() {
         inputSurname = findViewById(R.id.surname)
         inputPassword = findViewById(R.id.password)
         inputRepeatPassword = findViewById(R.id.repeatPassword)
+        val alredyHaveAccount : Button = findViewById(R.id.alreadyHaveAccountButton)
         val birthDateButton: Button = findViewById(R.id.birthDateButton)
         val birthDateTextView: TextView = findViewById(R.id.birthDateTextView)
+
+        alredyHaveAccount.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+
+        }
 
         /**
          * Sets up a listener for the birth date button to display a DatePicker dialog.
@@ -109,12 +117,6 @@ class DataEntryActivity : BaseActivity() {
 
                 else -> true
             }
-        }
-
-        fun goToLogin(view: View) {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
         }
 
         private fun registerUser() {
