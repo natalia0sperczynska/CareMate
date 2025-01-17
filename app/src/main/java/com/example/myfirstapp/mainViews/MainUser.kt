@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.myfirstapp.MapsActivity
 import com.example.myfirstapp.bmi.BMIActivity
 import com.example.myfirstapp.R
 import com.example.myfirstapp.doctorsView.DoctorsRecyclerView
@@ -52,6 +53,14 @@ class MainUser : AppCompatActivity() {
            val intent = Intent(this, UpdateDataActivity::class.java)
            startActivity(intent)
        }
+
+        val maps: LinearLayout = findViewById(R.id.maps)
+
+
+        updateData.setOnClickListener {
+            val intent = Intent(this, MapsActivity::class.java)
+            startActivity(intent)
+        }
         val doctors: LinearLayout = findViewById(R.id.doctors)
 
 
