@@ -148,7 +148,7 @@
                                 android:background="@drawable/white_top_buttons">
 
                                 <ImageView
-                                    android:id="@+id/imageView17"
+                                    android:id="@+id/blablakiaView17"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="16dp"
@@ -163,7 +163,7 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/textkolejnView5"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -227,7 +227,7 @@
                                 android:background="@drawable/white_top_buttons">
 
                                 <ImageView
-                                    android:id="@+id/imageView17"
+                                    android:id="@+id/imagesjhvView17"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="16dp"
@@ -242,7 +242,7 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/cALENDAR"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -267,7 +267,7 @@
                                 android:background="@drawable/white_top_buttons">
 
                                 <ImageView
-                                    android:id="@+id/imageView17"
+                                    android:id="@+id/imagdhjeView17"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="16dp"
@@ -327,7 +327,7 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/INBOXX"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -352,7 +352,7 @@
                                 android:background="@drawable/white_top_buttons">
 
                                 <ImageView
-                                    android:id="@+id/imageView17"
+                                    android:id="@+id/imageView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="16dp"
@@ -367,7 +367,7 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/doctors1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -392,7 +392,7 @@
                                 android:background="@drawable/white_top_buttons">
 
                                 <ImageView
-                                    android:id="@+id/imageView17"
+                                    android:id="@+id/imageViewW"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="16dp"
@@ -407,7 +407,7 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/MPSS"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -447,7 +447,7 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/LOGOUTT"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"

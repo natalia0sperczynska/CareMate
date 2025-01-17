@@ -57,7 +57,7 @@ class MainUser : AppCompatActivity() {
         val maps: LinearLayout = findViewById(R.id.maps)
 
 
-        updateData.setOnClickListener {
+        maps.setOnClickListener {
             val intent = Intent(this, MapsActivity::class.java)
             startActivity(intent)
         }

@@ -28,11 +28,11 @@
              "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
         -->
         <meta-data
-            android:name="com.google.android.geo.jM2BjXm9EPg6cg_KkbkieZcSli4="
-            android:value="jM2BjXm9EPg6cg_KkbkieZcSli4=" />
+            android:name="com.google.android.geo.AIzaSyDrygYY3nhZw8ILlu-sIuX39Sb3sTO8TT8"
+            android:value="AIzaSyDrygYY3nhZw8ILlu-sIuX39Sb3sTO8TT8" />
 
         <activity
-            android:name=".register.MapsActivity"
+            android:name="MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
 <!--        <activity-->
