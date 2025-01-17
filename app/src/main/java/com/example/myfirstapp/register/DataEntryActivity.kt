@@ -14,7 +14,6 @@ import com.example.myfirstapp.R
 import com.example.myfirstapp.firebase.FireStore
 import com.example.myfirstapp.firebase.User
 import com.example.myfirstapp.mainViews.BaseActivity
-import com.example.myfirstapp.mainViews.MainAdminActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.launch
