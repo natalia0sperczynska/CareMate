@@ -63,5 +63,4 @@ dependencies {
     implementation(libs.play.services.maps.v1900)
     implementation(libs.play.services.location)
     implementation(libs.places)
-
 }
