@@ -23,6 +23,8 @@ places = "4.1.0"
 playServicesLocation = "21.3.0"
 playServicesMaps = "18.1.0"
 playServicesMapsVersion = "19.0.0"
+firebaseMessaging = "24.1.0"
+androidxCoreKtx = "1.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,6 +49,8 @@ places = { module = "com.google.android.libraries.places:places", version.ref = 
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 play-services-maps-v1900 = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMapsVersion" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
+core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "androidxCoreKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
