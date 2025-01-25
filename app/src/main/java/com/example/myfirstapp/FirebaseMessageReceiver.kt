@@ -9,12 +9,10 @@ import android.content.Intent
 import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
 import androidx.test.core.app.ApplicationProvider
 import com.example.myfirstapp.mainViews.MainActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-
 
 class FirebaseMessageReceiver : FirebaseMessagingService() {
 
@@ -22,9 +20,7 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
         super.onNewToken(token)
     }
 
-
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-
         if (remoteMessage.getNotification() != null) {
             showNotification(
                 remoteMessage.getNotification()!!.getTitle()!!,
@@ -33,12 +29,13 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
         }
     }
 
+    @SuppressLint("RemoteViewLayout")
     private fun getCustomDesign(
         title: String,
         message: String
     ): RemoteViews {
         val remoteViews = RemoteViews(
-            ApplicationProvider.getApplicationContext<Context>().getPackageName(),
+            ApplicationProvider.getApplicationContext<Context>().packageName,
             R.layout.notification
         )
         remoteViews.setTextViewText(R.id.title, title)
@@ -54,7 +51,7 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
 
         val channelId = "notification_channel"
         val pendingIntent = PendingIntent.getActivity(
-            this, 0, intent, PendingIntent.FLAG_ONE_SHOT
+            this, 0, intent, PendingIntent.FLAG_IMMUTABLE
         )
 
         val builder = NotificationCompat.Builder(this, channelId)
@@ -63,18 +60,17 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
             .setOnlyAlertOnce(true)
             .setContentIntent(pendingIntent)
-            .setContent(getCustomDesign(title, message))
+            .setContentTitle(title)
+            .setContentText(message)
 
-        val notificationManager = ContextCompat.getSystemService(
-            this, NotificationManager::class.java
-        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val notificationManager = getSystemService(NotificationManager::class.java) as NotificationManager
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel(channelId, "Web App", importance)
+            notificationManager.createNotificationChannel(channel)
+        }
 
-        val notificationChannel = NotificationChannel(
-            channelId, "Web App",
-            NotificationManager.IMPORTANCE_HIGH
-        )
-        notificationManager?.createNotificationChannel(notificationChannel)
-
-        notificationManager?.notify(0, builder.build())
+        val notificationManager = getSystemService(NotificationManager::class.java) as NotificationManager
+        notificationManager.notify(0, builder.build())
     }
 }
