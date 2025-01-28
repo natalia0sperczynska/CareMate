@@ -24,11 +24,11 @@ class AlarmSchedulerImpl(
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        // For repeating alarms
+
         val calendar = Calendar.getInstance().apply {
             timeInMillis = alarmItem.time.atZone(ZoneId.systemDefault()).toEpochSecond() * 1000
             if (before(Calendar.getInstance())) {
-                add(Calendar.DATE, 1) // Schedule for the next day if time has passed
+                add(Calendar.DATE, 1)
             }
         }
         Log.d("AlarmSchedulerImpl", "Alarm set for: ${calendar.time}")

@@ -64,9 +64,6 @@ class SetNotificationActivity : AppCompatActivity() {
             val intent = Intent(this, MainUser::class.java)
             startActivity(intent)
         }
-//        clear.setOnClickListener {
-//            alarmScheduler.cancel(alarmItem)
-//        }
 
     }
     private fun showTimePicker(onTimeSelected: (hour: Int, minute: Int) -> Unit) {
