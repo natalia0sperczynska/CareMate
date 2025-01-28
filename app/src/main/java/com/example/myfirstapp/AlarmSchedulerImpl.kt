@@ -1,5 +1,6 @@
 package com.example.myfirstapp
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
@@ -13,8 +14,9 @@ class AlarmSchedulerImpl(
 ) : AlarmScheduler {
     private val alarmManager = context.getSystemService(AlarmManager::class.java)
 
+    @SuppressLint("ScheduleExactAlarm")
     override fun schedule(alarmItem: AlarmItem) {
-        val intent = Intent(context, NotificationReceiver::class.java).apply {
+        val intent = Intent(context, AlarmReceiver::class.java).apply {
             putExtra("EXTRA_MESSAGE", alarmItem.message)
         }
         val pendingIntent = PendingIntent.getBroadcast(
@@ -24,29 +26,34 @@ class AlarmSchedulerImpl(
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-
         val calendar = Calendar.getInstance().apply {
-            timeInMillis = alarmItem.time.atZone(ZoneId.systemDefault()).toEpochSecond() * 1000
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, alarmItem.time.hour)
+            set(Calendar.MINUTE, alarmItem.time.minute)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+
             if (before(Calendar.getInstance())) {
                 add(Calendar.DATE, 1)
             }
         }
-        Log.d("AlarmSchedulerImpl", "Alarm set for: ${calendar.time}")
 
-        alarmManager.setRepeating(
+        Log.d("AlarmSchedulerImpl", "Setting alarm for: ${calendar.time}")
+
+        alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
-            AlarmManager.INTERVAL_DAY,
             pendingIntent
         )
     }
+
 
     override fun cancel(alarmItem: AlarmItem) {
         alarmManager.cancel(
             PendingIntent.getBroadcast(
                 context,
                 alarmItem.hashCode(),
-                Intent(context, NotificationReceiver::class.java),
+                Intent(context, AlarmReceiver::class.java),
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
         )
