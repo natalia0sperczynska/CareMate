@@ -24,12 +24,15 @@ materialVersion = "1.9.0"
 googleAndroidLibrariesMapsplatformSecretsGradlePlugin = "2.0.1"
 places = "4.1.0"
 placesVersion = "3.3.0"
+playServices = "17.0.0'"
 playServicesLocation = "21.3.0"
 playServicesMaps = "18.1.0"
 playServicesMapsVersion = "19.0.0"
 firebaseMessaging = "24.1.0"
 androidxCoreKtx = "1.6.1"
 lifecycleRuntimeAndroid = "2.8.7"
+playServicesMeasurementApi = "22.2.0"
+playServicesMeasurementSdkApi = "22.2.0"
 secretsGradlePlugin = "2.0.1"
 
 [libraries]
@@ -41,6 +44,8 @@ firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-v4151 = { module = "com.github.bumptech.glide:glide", version.ref = "glideVersion" }
+gms-google-services = { module = "com.google.gms:google-services" }
+google-services = { module = "com.google.gms:google-services" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -56,12 +61,15 @@ material-v190 = { module = "com.google.android.material:material", version.ref =
 places = { module = "com.google.android.libraries.places:places", version.ref = "places" }
 places-v330 = { module = "com.google.android.libraries.places:places", version.ref = "placesVersion" }
 places-v350 = { module = "com.google.android.libraries.places:places", version.ref = "googlePlaces" }
+play-services = { module = "implementation 'com.google.android.gms:play-services", version.ref = "playServices" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 play-services-maps-v1900 = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMapsVersion" }
 firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
 core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "androidxCoreKtx" }
 androidx-lifecycle-runtime-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-android", version.ref = "lifecycleRuntimeAndroid" }
+play-services-measurement-api = { module = "com.google.android.gms:play-services-measurement-api", version.ref = "playServicesMeasurementApi" }
+play-services-measurement-sdk-api = { module = "com.google.android.gms:play-services-measurement-sdk-api", version.ref = "playServicesMeasurementSdkApi" }
 secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin", version.ref = "secretsGradlePlugin" }
 
 [plugins]

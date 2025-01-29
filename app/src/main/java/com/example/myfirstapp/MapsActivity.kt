@@ -1,5 +1,4 @@
 package com.example.myfirstapp
-
 import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
@@ -7,28 +6,30 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
-import android.widget.Button
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.myfirstapp.databinding.ActivityMapsBinding
 import com.example.myfirstapp.BuildConfig
 import com.example.myfirstapp.R
+import com.google.android.gms.common.GooglePlayServicesUtil.isGooglePlayServicesAvailable
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.example.myfirstapp.databinding.ActivityMapsBinding
 import com.google.android.gms.location.*
+import com.google.android.gms.maps.model.Marker
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.CircularBounds
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.api.net.SearchNearbyRequest
+import com.google.api.Context
 
 import kotlinx.coroutines.launch
 
@@ -53,6 +54,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 //        backButton?.setOnClickListener {
 //            finish()
+//        }
+
+//        if (!isGooglePlayServicesAvailable()) {
+//            Toast.makeText(this, "Google Play Services not available", Toast.LENGTH_LONG).show()
+//            finish() // Exit the activity if Play Services is missing
+//            return
 //        }
 
         initializePlacesClient()
