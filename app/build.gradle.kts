@@ -9,6 +9,7 @@ android {
     namespace = "com.example.myfirstapp"
     compileSdk = 35
 
+
     defaultConfig {
         applicationId = "com.example.myfirstapp"
         minSdk = 34
@@ -37,6 +38,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -52,6 +54,7 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.firebase.messaging)
     implementation(libs.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -65,4 +68,8 @@ dependencies {
     implementation(libs.play.services.maps.v1900)
     implementation(libs.play.services.location)
     implementation(libs.places)
+    implementation(platform(libs.kotlin.bom.v180))
+    implementation(libs.places.v350)
+
 }
+

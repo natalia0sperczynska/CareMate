@@ -3,60 +3,217 @@ package com.example.myfirstapp
 import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.os.Looper
+import android.util.Log
+import android.widget.Button
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.example.myfirstapp.BuildConfig
+import com.example.myfirstapp.R
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.example.myfirstapp.databinding.ActivityMapsBinding
+import com.google.android.gms.location.*
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.CircularBounds
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.api.net.PlacesClient
+import com.google.android.libraries.places.api.net.SearchNearbyRequest
+
+import kotlinx.coroutines.launch
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
-    private lateinit var googleMap: GoogleMap
+    private lateinit var mMap: GoogleMap
+    private lateinit var binding: ActivityMapsBinding
+    private lateinit var placesClient: PlacesClient
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var locationCallback: LocationCallback
+    private var isFirstLocationUpdate = true
 
-    companion object {
-        private const val LOCATION_REQUEST_CODE = 1000
-    }
+   // private var backButton: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_maps)
 
-        // Initialize map and location client
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+        binding = ActivityMapsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        //backButton = findViewById(R.id.backButton)
+
+//        backButton?.setOnClickListener {
+//            finish()
+//        }
+
+        initializePlacesClient()
+        initializeLocationClient()
+        initializeMapFragment()
+    }
+
+    private fun initializePlacesClient() {
+        val apiKey = BuildConfig.MAPS_API_KEY
+        if (apiKey.isEmpty() || apiKey == "DEFAULT_API_KEY") {
+            Log.e("Places test", "No api key")
+            Toast.makeText(this, "No API key", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+        Places.initializeWithNewPlacesApiEnabled(applicationContext, apiKey)
+        placesClient = Places.createClient(this)
+    }
+
+    private fun initializeLocationClient() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
-    override fun onMapReady(map: GoogleMap) {
-        googleMap = map
-        googleMap.uiSettings.isZoomControlsEnabled = true
-
-        setUpMap()
-        googleMap.setOnMapClickListener { latLng ->
-            googleMap.addMarker(MarkerOptions().position(latLng).title("Marker at (${latLng.latitude}, ${latLng.longitude})"))
-        }
+    private fun initializeMapFragment() {
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 
-    private fun setUpMap() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_REQUEST_CODE)
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+        if (ContextCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
+        } else {
+            getCurrentLocation()
+        }
+        Toast.makeText(this, "Map is ready", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun getCurrentLocation() {
+        val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 10000)
+            .setMinUpdateIntervalMillis(5000)
+            .build()
+
+        if (ActivityCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
             return
         }
 
-        googleMap.isMyLocationEnabled = true
-        fusedLocationClient.lastLocation.addOnSuccessListener(this) { location: Location? ->
-            location?.let {
-                val userLatLng = LatLng(it.latitude, it.longitude)
-                googleMap.addMarker(MarkerOptions().position(userLatLng).title("Your Location"))
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 15f))
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                val location: Location? = locationResult.lastLocation
+                location?.let {
+                    handleNewLocation(location)
+                } ?: run {
+                    Toast.makeText(this@MapsActivity, "Unable to fetch location", Toast.LENGTH_SHORT).show()
+                }
             }
         }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                fusedLocationClient.requestLocationUpdates(
+                    locationRequest,
+                    locationCallback,
+                    Looper.getMainLooper()
+                )
+            }
+        }
+    }
+
+    private fun handleNewLocation(location: Location) {
+        Toast.makeText(this, "Location: ${location.latitude}, ${location.longitude}", Toast.LENGTH_SHORT).show()
+        val currentLocation = LatLng(location.latitude, location.longitude)
+        if (isFirstLocationUpdate) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
+            isFirstLocationUpdate = false
+        }
+        searchNearbyPlaces(currentLocation)
+    }
+
+    private fun searchNearbyPlaces(currentLocation: LatLng) {
+        val placeFields = listOf(Place.Field.ID, Place.Field.DISPLAY_NAME, Place.Field.LOCATION)
+        val circle = CircularBounds.newInstance(currentLocation, 1000.0)
+        val includedTypes = listOf("dentist")
+
+        val searchNearbyRequest = SearchNearbyRequest.builder(circle, placeFields)
+            .setIncludedTypes(includedTypes)
+            .setMaxResultCount(10)
+            .build()
+
+        placesClient.searchNearby(searchNearbyRequest)
+            .addOnSuccessListener { response ->
+                val places = response.places
+                if (places.isEmpty()) {
+                    Toast.makeText(this, "No places found", Toast.LENGTH_SHORT).show()
+                    return@addOnSuccessListener
+                }
+                Toast.makeText(this, "Places found: ${places.size}", Toast.LENGTH_SHORT).show()
+                for (place in places) {
+                    val placeName = place.displayName
+                    val placeLatLng = place.location
+                    val marker = mMap.addMarker(MarkerOptions().position(placeLatLng!!).title(placeName))
+                }
+                if (places.isNotEmpty()) {
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(places[0].location!!, 15f)) // Zoom to the first place
+                }
+
+                mMap.setOnInfoWindowClickListener { marker ->
+                    val place = places.find { it.location == marker.position }
+                    //place?.let { onInfoWindowClick(it) }
+                }
+
+            }
+            .addOnFailureListener { exception ->
+                Log.e("MapsActivity", "Error searching nearby places", exception)
+                Toast.makeText(this, "Error searching nearby places", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+//    private fun onInfoWindowClick(place: Place): Boolean {
+//        val dialog = DetailsDialogFragment(place, placesClient)
+//        dialog.show(supportFragmentManager, "DetailsDialogFragment")
+//        return true
+//    }
+
+
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getCurrentLocation()
+            } else {
+                Toast.makeText(this, "Permission denied. Can't show location.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (::locationCallback.isInitialized) {
+            fusedLocationClient.removeLocationUpdates(locationCallback) // Remove location updates when the activity is destroyed
+        }
+    }
+
+    companion object {
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 }

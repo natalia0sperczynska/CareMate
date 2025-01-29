@@ -18,6 +18,10 @@
         android:theme="@style/Theme.MyFirstApp"
         tools:targetApi="34">
 
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
