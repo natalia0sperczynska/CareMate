@@ -8,24 +8,19 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.myfirstapp.R
-import com.example.myfirstapp.login.LoginActivity
 
 class DoctorDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_detail)
+
         val goBack: Button = findViewById(R.id.buttonGoBack)
+        goBack.setOnClickListener { finish() }
 
-
-        goBack.setOnClickListener {
-            val intent = Intent(this, DoctorsRecyclerView::class.java)
-            startActivity(intent)
-        }
-
-        val doctorName = intent.getStringExtra("DOCTOR_NAME") ?: ""
+        val doctorName = intent.getStringExtra("DOCTOR_NAME") ?: "Unknown"
         val doctorSurname = intent.getStringExtra("DOCTOR_SURNAME") ?: ""
-        val doctorEmail = intent.getStringExtra("DOCTOR_EMAIL") ?: ""
-        val doctorPhone = intent.getStringExtra("DOCTOR_PHONE") ?: ""
+        val doctorEmail = intent.getStringExtra("DOCTOR_EMAIL") ?: "No Email"
+        val doctorPhone = intent.getStringExtra("DOCTOR_PHONE") ?: "No Phone"
         val doctorImage = intent.getStringExtra("DOCTOR_IMAGE") ?: ""
 
         val nameView: TextView = findViewById(R.id.doctorName)
@@ -44,19 +39,6 @@ class DoctorDetailActivity : AppCompatActivity() {
                 .into(imageView)
         } else {
             imageView.setImageResource(R.drawable.profile_pic)
-        }
-    }
-
-    companion object {
-        fun start(activity: AppCompatActivity, name: String, surname: String, email: String, phone: String, imageUrl: String) {
-            val intent = Intent(activity, DoctorDetailActivity::class.java).apply {
-                putExtra("DOCTOR_NAME", name)
-                putExtra("DOCTOR_SURNAME", surname)
-                putExtra("DOCTOR_EMAIL", email)
-                putExtra("DOCTOR_PHONE", phone)
-                putExtra("DOCTOR_IMAGE", imageUrl)
-            }
-            activity.startActivity(intent)
         }
     }
 }
