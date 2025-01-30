@@ -84,6 +84,9 @@
             android:name=".bmi.BMIActivity"
             android:exported="false" />
         <activity
+            android:name=".doctorsView.DoctorDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".mainViews.MainActivity"
             android:exported="true">
             <intent-filter>
