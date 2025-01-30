@@ -17,6 +17,7 @@ class AlarmSchedulerImpl(
     @SuppressLint("ScheduleExactAlarm")
     override fun schedule(alarmItem: AlarmItem) {
         val intent = Intent(context, AlarmReceiver::class.java).apply {
+            Log.d("AlarmSchedulerImpl", "BUBA")
             putExtra("EXTRA_MESSAGE", alarmItem.message)
         }
         val pendingIntent = PendingIntent.getBroadcast(

@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import java.time.LocalDateTime
 import java.util.Calendar
@@ -14,6 +15,7 @@ import java.util.Calendar
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val alarmMessage = intent.getStringExtra("EXTRA_MESSAGE") ?: "Time to take your meds!"
+        Log.d("AlarmReceiver", "Alarm received: $alarmMessage")
 
         showNotification(context, "Care Mate", alarmMessage)
 
