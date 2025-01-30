@@ -145,7 +145,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun searchNearbyPlaces(currentLocation: LatLng) {
         val placeFields = listOf(Place.Field.ID, Place.Field.DISPLAY_NAME, Place.Field.LOCATION)
         val circle = CircularBounds.newInstance(currentLocation, 1000.0)
-        val includedTypes = listOf("restaurant")
+        val includedTypes = listOf("hospital")
 
         val searchNearbyRequest = SearchNearbyRequest.builder(circle, placeFields)
             .setIncludedTypes(includedTypes)
