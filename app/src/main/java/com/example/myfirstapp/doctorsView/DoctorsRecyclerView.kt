@@ -22,7 +22,7 @@ class DoctorsRecyclerView : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctors)
 
-        val goBackToMainUser: Button = findViewById(R.id.goBackButton)
+        val goBackToMainUser: Button = findViewById(R.id.goBackButton12)
 
         val recyclerView: RecyclerView = findViewById(R.id.RecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
