@@ -34,7 +34,15 @@ class DoctorsRecyclerView : AppCompatActivity() {
                     doctors.add(doctor)
                 }
                 Log.d("DoctorsRecyclerView", "Doctors: $doctors")
-                recyclerView.adapter = DoctorAdapter(doctors)
+                recyclerView.adapter = DoctorAdapter(doctors) { selectedDoctor ->
+                    val intent = Intent(this, DoctorDetailActivity::class.java).apply {
+                        putExtra("DOCTOR_NAME", selectedDoctor.name)
+                        putExtra("DOCTOR_SURNAME", selectedDoctor.surname)
+                        putExtra("DOCTOR_EMAIL", selectedDoctor.email)
+                        putExtra("DOCTOR_IMAGE", selectedDoctor.profilePictureUrl)
+                    }
+                    startActivity(intent)
+                }
             }
             .addOnFailureListener { e ->
                 Log.e("DoctorsRecyclerView", "Error fetching documents", e)

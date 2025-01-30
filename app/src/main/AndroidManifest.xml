@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFirstApp"
         tools:targetApi="34">
-
+        <activity
+            android:name=".doctorsView.DoctorDetailActivity"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -48,10 +50,9 @@
              project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
              "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
         -->
-        <!--        <meta-data-->
-        <!--            android:name="com.google.android.geo.AIzaSyDrygYY3nhZw8ILlu-sIuX39Sb3sTO8TT8"-->
-        <!--            android:value="AIzaSyDrygYY3nhZw8ILlu-sIuX39Sb3sTO8TT8" />-->
-
+        <!-- <meta-data -->
+        <!-- android:name="com.google.android.geo.AIzaSyDrygYY3nhZw8ILlu-sIuX39Sb3sTO8TT8" -->
+        <!-- android:value="AIzaSyDrygYY3nhZw8ILlu-sIuX39Sb3sTO8TT8" /> -->
         <activity
             android:name=".MapsActivity"
             android:exported="false"
@@ -98,10 +99,9 @@
             android:name=".FirebaseMessageReceiver"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

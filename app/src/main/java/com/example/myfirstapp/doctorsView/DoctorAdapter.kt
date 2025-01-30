@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.myfirstapp.R
 import com.example.myfirstapp.firebase.Doctor
 
-class DoctorAdapter(private val doctors: List<Doctor>) :
+class DoctorAdapter(private val doctors: List<Doctor>,private val onDoctorClick: (Doctor) -> Unit) :
     RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
 
     class DoctorViewHolder(doctorView: View) : RecyclerView.ViewHolder(doctorView) {
@@ -37,6 +37,9 @@ class DoctorAdapter(private val doctors: List<Doctor>) :
                 .load(doctor.profilePictureUrl)
                 .placeholder(R.drawable.profile_pic)
                 .into(holder.imageView)
+        }
+        holder.itemView.setOnClickListener {
+            onDoctorClick(doctor)
         }
     }
 
