@@ -42,25 +42,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var locationCallback: LocationCallback
     private var isFirstLocationUpdate = true
 
-   // private var backButton: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //backButton = findViewById(R.id.backButton)
-
-//        backButton?.setOnClickListener {
-//            finish()
-//        }
-
-//        if (!isGooglePlayServicesAvailable()) {
-//            Toast.makeText(this, "Google Play Services not available", Toast.LENGTH_LONG).show()
-//            finish() // Exit the activity if Play Services is missing
-//            return
-//        }
 
         initializePlacesClient()
         initializeLocationClient()
@@ -158,7 +145,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun searchNearbyPlaces(currentLocation: LatLng) {
         val placeFields = listOf(Place.Field.ID, Place.Field.DISPLAY_NAME, Place.Field.LOCATION)
         val circle = CircularBounds.newInstance(currentLocation, 1000.0)
-        val includedTypes = listOf("dentist")
+        val includedTypes = listOf("restaurant")
 
         val searchNearbyRequest = SearchNearbyRequest.builder(circle, placeFields)
             .setIncludedTypes(includedTypes)
@@ -168,7 +155,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         placesClient.searchNearby(searchNearbyRequest)
             .addOnSuccessListener { response ->
                 val places = response.places
+                Log.d("Places API Response", places.toString())
                 if (places.isEmpty()) {
+                    Log.d("MapsActivity", "No places found.")
                     Toast.makeText(this, "No places found", Toast.LENGTH_SHORT).show()
                     return@addOnSuccessListener
                 }
@@ -179,12 +168,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     val marker = mMap.addMarker(MarkerOptions().position(placeLatLng!!).title(placeName))
                 }
                 if (places.isNotEmpty()) {
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(places[0].location!!, 15f)) // Zoom to the first place
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(places[0].location!!, 15f))
                 }
 
                 mMap.setOnInfoWindowClickListener { marker ->
                     val place = places.find { it.location == marker.position }
-                    //place?.let { onInfoWindowClick(it) }
                 }
 
             }
@@ -193,13 +181,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(this, "Error searching nearby places", Toast.LENGTH_SHORT).show()
             }
     }
-
-//    private fun onInfoWindowClick(place: Place): Boolean {
-//        val dialog = DetailsDialogFragment(place, placesClient)
-//        dialog.show(supportFragmentManager, "DetailsDialogFragment")
-//        return true
-//    }
-
 
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -216,7 +197,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onDestroy() {
         super.onDestroy()
         if (::locationCallback.isInitialized) {
-            fusedLocationClient.removeLocationUpdates(locationCallback) // Remove location updates when the activity is destroyed
+            fusedLocationClient.removeLocationUpdates(locationCallback)
         }
     }
 
