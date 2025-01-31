@@ -144,14 +144,14 @@
                             android:orientation="vertical">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:layout_height="71dp"
                                 android:background="@drawable/white_top_buttons">
 
                                 <ImageView
                                     android:id="@+id/imageViewUpdateData"
-                                    android:layout_width="27dp"
-                                    android:layout_height="33dp"
+                                    android:layout_width="53dp"
+                                    android:layout_height="52dp"
                                     android:layout_marginStart="16dp"
                                     android:layout_marginTop="16dp"
                                     android:layout_marginEnd="16dp"
@@ -160,7 +160,7 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="?android:attr/fingerprintAuthDrawable" />
+                                    app:srcCompat="@mipmap/update_icon_foreground" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView
@@ -183,8 +183,8 @@
                             android:orientation="vertical">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_width="85dp"
+                                android:layout_height="72dp"
                                 android:background="@drawable/white_top_buttons">
 
                                 <ImageView
@@ -210,7 +210,7 @@
                                 android:text="Notifications"
                                 android:textAlignment="center"
                                 android:textColor="@color/purple"
-                                android:textSize="16sp"
+                                android:textSize="15sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -223,14 +223,14 @@
                             android:orientation="vertical">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:layout_height="71dp"
                                 android:background="@drawable/white_top_buttons">
 
                                 <ImageView
                                     android:id="@+id/imagdhjeView17"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="53dp"
+                                    android:layout_height="48dp"
                                     android:layout_marginStart="16dp"
                                     android:layout_marginTop="16dp"
                                     android:layout_marginEnd="16dp"
@@ -239,7 +239,7 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="@android:drawable/ic_dialog_dialer" />
+                                    app:srcCompat="@mipmap/cal_icon_round" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView
@@ -269,14 +269,14 @@
                             android:orientation="vertical">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_width="79dp"
+                                android:layout_height="72dp"
                                 android:background="@drawable/white_top_buttons">
 
                                 <ImageView
                                     android:id="@+id/imageView"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="64dp"
+                                    android:layout_height="49dp"
                                     android:layout_marginStart="16dp"
                                     android:layout_marginTop="16dp"
                                     android:layout_marginEnd="16dp"
@@ -285,7 +285,7 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="@drawable/ic_1" />
+                                    app:srcCompat="@mipmap/doctor_view_icon_foreground" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView
@@ -309,14 +309,14 @@
                             android:orientation="vertical">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_width="81dp"
+                                android:layout_height="73dp"
                                 android:background="@drawable/white_top_buttons">
 
                                 <ImageView
                                     android:id="@+id/imageViewW"
-                                    android:layout_width="67dp"
-                                    android:layout_height="54dp"
+                                    android:layout_width="59dp"
+                                    android:layout_height="44dp"
                                     android:layout_marginStart="16dp"
                                     android:layout_marginTop="16dp"
                                     android:layout_marginEnd="16dp"
@@ -325,7 +325,7 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="@mipmap/ic_icon" />
+                                    app:srcCompat="@mipmap/ic_icon_round" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView
@@ -349,8 +349,8 @@
                             android:orientation="vertical">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:layout_height="71dp"
                                 android:background="@drawable/white_top_buttons">
 
                                 <ImageView
