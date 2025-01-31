@@ -136,45 +136,6 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/white_top_buttons">
-
-                                <ImageView
-                                    android:id="@+id/blablakiaView17"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="16dp"
-                                    android:layout_marginTop="16dp"
-                                    android:layout_marginEnd="16dp"
-                                    android:layout_marginBottom="16dp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="@drawable/ic_1" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            <TextView
-                                android:id="@+id/textkolejnView5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="Inbox"
-                                android:textAlignment="center"
-                                android:textColor="@color/purple"
-                                android:textSize="16sp"
-                                android:textStyle="bold|italic" />
-                        </LinearLayout>
-
-                        <LinearLayout
                             android:id="@+id/updateData"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -238,7 +199,7 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="@drawable/ic_5" />
+                                    app:srcCompat="@drawable/notification" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView
@@ -246,7 +207,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:text="Calendar"
+                                android:text="Notifications"
                                 android:textAlignment="center"
                                 android:textColor="@color/purple"
                                 android:textSize="16sp"
@@ -298,45 +259,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/white_top_buttons">
-
-                                <ImageView
-                                    android:id="@+id/imageView17"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="16dp"
-                                    android:layout_marginTop="16dp"
-                                    android:layout_marginEnd="16dp"
-                                    android:layout_marginBottom="16dp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="@drawable/ic_1" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            <TextView
-                                android:id="@+id/INBOXX"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="Inbox"
-                                android:textAlignment="center"
-                                android:textColor="@color/purple"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/doctors"
@@ -393,8 +315,8 @@
 
                                 <ImageView
                                     android:id="@+id/imageViewW"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="67dp"
+                                    android:layout_height="54dp"
                                     android:layout_marginStart="16dp"
                                     android:layout_marginTop="16dp"
                                     android:layout_marginEnd="16dp"
@@ -403,7 +325,7 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="@drawable/ic_1" />
+                                    app:srcCompat="@mipmap/ic_icon" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView
