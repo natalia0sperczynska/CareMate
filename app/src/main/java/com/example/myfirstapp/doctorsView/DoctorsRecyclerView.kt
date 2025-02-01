@@ -31,6 +31,7 @@ class DoctorsRecyclerView : AppCompatActivity(), RecyclerViewInterface {
                 doctors.clear()
                 for (document in result) {
                     val doctor = document.toObject(Doctor::class.java)
+                    Log.d("DoctorsRecyclerView", "Fetched doctor: ${doctor.name}, Image URL: ${doctor.profilePicture}")
                     doctors.add(doctor)
                 }
                 Log.d("DoctorsRecyclerView", "Doctors: $doctors")
@@ -54,7 +55,7 @@ class DoctorsRecyclerView : AppCompatActivity(), RecyclerViewInterface {
             putExtra("DOCTOR_SURNAME", doctor.surname)
             putExtra("DOCTOR_EMAIL", doctor.email)
             putExtra("DOCTOR_PHONE", doctor.phoneNumber)
-            putExtra("DOCTOR_IMAGE", doctor.profilePictureUrl)
+            putExtra("DOCTOR_IMAGE", doctor.profilePicture)
         }
 
         startActivity(intent)

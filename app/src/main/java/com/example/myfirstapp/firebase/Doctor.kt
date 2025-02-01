@@ -5,6 +5,6 @@ data class Doctor(
     val surname: String = "",
     val email: String = "",
     val phoneNumber: String = "",
-    val profilePictureUrl: String = ""
+    val profilePicture: String = ""
 )
 

@@ -224,7 +224,7 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="71dp"
+                                android:layout_height="74dp"
                                 android:background="@drawable/white_top_buttons">
 
                                 <ImageView
@@ -239,7 +239,7 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="@mipmap/cal_icon_round" />
+                                    app:srcCompat="@mipmap/calcultaor_pic_foreground" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView

@@ -1,5 +1,6 @@
 package com.example.myfirstapp.doctorsView
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,11 +42,15 @@ class DoctorAdapter(
         holder.nameView.text = "${doctor.name} ${doctor.surname}"
         holder.emailView.text = doctor.email
 
-        if (doctor.profilePictureUrl.isEmpty()) {
+        Log.d("DoctorAdapter", "Loading image for ${doctor.name}: ${doctor.profilePicture}")
+
+        if (doctor.profilePicture.isEmpty()) {
+            Log.e("DoctorAdapter", "Doctor ${doctor.name} has an empty profilePictureUrl!")
             holder.imageView.setImageResource(R.drawable.profile_pic) // Default photo
         } else {
+            Log.d("DoctorAdapter", "Loading image for ${doctor.name}: ${doctor.profilePicture}")
             Glide.with(holder.itemView.context)
-                .load(doctor.profilePictureUrl)
+                .load(doctor.profilePicture)
                 .placeholder(R.drawable.profile_pic)
                 .into(holder.imageView)
         }
