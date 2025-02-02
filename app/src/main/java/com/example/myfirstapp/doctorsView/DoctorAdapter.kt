@@ -10,7 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myfirstapp.R
 import com.example.myfirstapp.firebase.Doctor
-
+/**
+ * Adapter class for displaying a list of doctors in a RecyclerView.
+ * @param doctors The list of Doctor objects to be displayed.
+ * @param recyclerViewInterface Interface for handling item click events.
+ */
 class DoctorAdapter(
     private val doctors: List<Doctor>,
     private val recyclerViewInterface: RecyclerViewInterface?
@@ -30,13 +34,22 @@ class DoctorAdapter(
             }
         }
     }
-
+    /**
+     * Function creates a new ViewHolder instance when needed.
+     * @param parent The parent ViewGroup.
+     * @param viewType The type of view (not used in this case).
+     * @return A new DoctorViewHolder instance.
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.doctor_view, parent, false)
         return DoctorViewHolder(view)
     }
-
+    /**
+     * Function binds data to a ViewHolder at a specific position.
+     * @param holder The ViewHolder to bind data to.
+     * @param position The position of the item in the list.
+     */
     override fun onBindViewHolder(holder: DoctorViewHolder, position: Int) {
         val doctor = doctors[position]
         holder.nameView.text = "${doctor.name} ${doctor.surname}"
@@ -55,6 +68,9 @@ class DoctorAdapter(
                 .into(holder.imageView)
         }
     }
-
+    /**
+     * Function returns the total number of items in the dataset.
+     * @return The size of the doctors list.
+     */
     override fun getItemCount(): Int = doctors.size
 }

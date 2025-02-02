@@ -26,7 +26,10 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.api.net.SearchNearbyRequest
 import kotlinx.coroutines.launch
-
+/**
+ * Activity for displaying a map and user location. It includes features like showing nearby places
+ * (e.g., hospitals) and handling location permissions.
+ */
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
@@ -36,7 +39,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var locationCallback: LocationCallback
     private var isFirstLocationUpdate = true
 
-
+    /**
+     * Called when the activity is created. Initializes the map, location services, and places client.
+     *
+     * @param savedInstanceState The saved state of the activity, if available.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -48,6 +55,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         initializeMapFragment()
     }
 
+    /**
+     * Initializes the Places client using the API key.
+     */
     private fun initializePlacesClient() {
         val apiKey = BuildConfig.MAPS_API_KEY
         if (apiKey.isEmpty() || apiKey == "DEFAULT_API_KEY") {
@@ -59,17 +69,25 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         Places.initializeWithNewPlacesApiEnabled(applicationContext, apiKey)
         placesClient = Places.createClient(this)
     }
-
+    /**
+     * Initializes the Fused Location Provider Client.
+     */
     private fun initializeLocationClient() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
-
+    /**
+     * Initializes the MapFragment and sets it up to load the map asynchronously.
+     */
     private fun initializeMapFragment() {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
-
+    /**
+     * Called when the map is ready for interaction. It checks location permissions and retrieves the current location.
+     *
+     * @param googleMap The GoogleMap instance.
+     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         if (ContextCompat.checkSelfPermission(
@@ -85,7 +103,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         Toast.makeText(this, "Map is ready", Toast.LENGTH_SHORT).show()
     }
-
+    /**
+     * Requests and retrieves the current location of the user.
+     */
     private fun getCurrentLocation() {
         val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 10000)
             .setMinUpdateIntervalMillis(5000)
@@ -125,7 +145,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
-
+    /**
+     * Handles the new location by displaying it on the map and searching for nearby places.
+     *
+     * @param location The current location of the user.
+     */
     private fun handleNewLocation(location: Location) {
         Toast.makeText(this, "Location: ${location.latitude}, ${location.longitude}", Toast.LENGTH_SHORT).show()
         val currentLocation = LatLng(location.latitude, location.longitude)
@@ -135,7 +159,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         searchNearbyPlaces(currentLocation)
     }
-
+    /**
+     * Searches for nearby places around the current location and displays them on the map.
+     *
+     * @param currentLocation The current location of the user.
+     */
     private fun searchNearbyPlaces(currentLocation: LatLng) {
         val placeFields = listOf(Place.Field.ID, Place.Field.DISPLAY_NAME, Place.Field.LOCATION)
         val circle = CircularBounds.newInstance(currentLocation, 10000.0)
@@ -176,7 +204,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
     }
 
-
+    /**
+     * Handles the result of location permission request.
+     *
+     * @param requestCode The request code passed to requestPermissions.
+     * @param permissions The requested permissions.
+     * @param grantResults The results of the requested permissions.
+     */
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
@@ -187,7 +221,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
-
+    /**
+     * Cleans up resources and removes location updates when the activity is destroyed.
+     */
     override fun onDestroy() {
         super.onDestroy()
         if (::locationCallback.isInitialized) {

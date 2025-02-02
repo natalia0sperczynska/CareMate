@@ -12,7 +12,9 @@ import com.example.myfirstapp.R
 import com.example.myfirstapp.firebase.Doctor
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-
+/**
+ * Activity displaying a list of doctors in a RecyclerView.
+ */
 class DoctorsRecyclerView : AppCompatActivity(), RecyclerViewInterface {
 
     private val db = Firebase.firestore
@@ -46,7 +48,10 @@ class DoctorsRecyclerView : AppCompatActivity(), RecyclerViewInterface {
             startActivity(intent)
         }
     }
-
+    /**
+     * Function handles the click event on a doctor item, opening the DoctorDetailActivity.
+     * @param position The position of the clicked item in the list.
+     */
     override fun onClickItem(position: Int) {
         val doctor = doctors[position]
 

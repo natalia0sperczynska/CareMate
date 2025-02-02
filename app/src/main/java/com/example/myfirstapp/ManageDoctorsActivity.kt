@@ -14,13 +14,19 @@ import com.example.myfirstapp.mainViews.MainAdminActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
-
+/**
+ * Activity for managing doctor information. It allows the admin to add doctor details.
+ */
 class ManageDoctorsActivity : AppCompatActivity() {
 
     private val auth = FirebaseAuth.getInstance()
     private val firestoreClass = FireStore()
     private val db = Firebase.firestore
-
+    /**
+     * Called when the activity is created. Initializes views and sets listeners.
+     *
+     * @param savedInstanceState The saved state of the activity, if available.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -57,13 +63,6 @@ class ManageDoctorsActivity : AppCompatActivity() {
                     .addOnSuccessListener {
                         Toast.makeText(this, "Doctor added successfully!", Toast.LENGTH_SHORT)
                             .show()
-//                        clearFields(
-//                            nameInput,
-//                            surnameInput,
-//                            emailInput,
-//                            phoneInput,
-//                            profilePicInput
-//                        )
                     }
             } else {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
@@ -76,6 +75,11 @@ class ManageDoctorsActivity : AppCompatActivity() {
             val intent = Intent(this, MainAdminActivity::class.java)
             startActivity(intent)
         }
+        /**
+         * Clears the text from multiple EditText fields.
+         *
+         * @param fields The EditText fields to clear.
+         */
         fun clearFields(vararg fields: EditText) {
             for (field in fields) {
                 field.text.clear()

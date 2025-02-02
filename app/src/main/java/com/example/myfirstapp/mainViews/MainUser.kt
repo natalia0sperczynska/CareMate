@@ -16,11 +16,14 @@ import com.example.myfirstapp.firebase.FireStore
 import com.example.myfirstapp.updateData.UpdateDataActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
-
+/**
+ * Main activity for a logged-in user.
+ * Displays user-related information and provides options to view doctors, update data, calculate BMI, and more.
+ */
 class MainUser : AppCompatActivity() {
 
-    private val auth = FirebaseAuth.getInstance() // Firebase authentication instance
-    private val firestoreClass = FireStore() // Firestore interaction helper class
+    private val auth = FirebaseAuth.getInstance()
+    private val firestoreClass = FireStore()
 
 
     @SuppressLint("MissingInflatedId")
@@ -37,15 +40,14 @@ class MainUser : AppCompatActivity() {
        if (userId != null) {
            loadUserData(userId,welcomeText)
        }
-       //val logout1: Button = findViewById(R.id.logoutButton)
+
         val logout: LinearLayout = findViewById(R.id.logout)
        logout.setOnClickListener {
            FirebaseAuth.getInstance().signOut() // Sign out the user
            val intent = Intent(this, MainActivity::class.java)
            startActivity(intent)
-           finish() // Prevent returning to this activity when back is pressed
+           finish()
        }
-      // val updateData: Button = findViewById(R.id.updatedataButton)
         val updateData: LinearLayout = findViewById(R.id.updateData)
 
 
@@ -77,37 +79,20 @@ class MainUser : AppCompatActivity() {
             val intent = Intent(this, BMIActivity::class.java)
             startActivity(intent)
         }
-
-//        val notificationsButton: LinearLayout = findViewById(R.id.imageView12).parent
-//        notificationsButton.setOnClickListener {
-//            val intent = Intent(this, NotificationsActivity::class.java)
-//            startActivity(intent)
-//        }
-//
-//        val calendarButton: LinearLayout = findViewById(R.id.imageView13).parent
-//        calendarButton.setOnClickListener {
-//            val intent = Intent(this, CalendarActivity::class.java)
-//            startActivity(intent)
-//        }
-//
-//        val appointmentButton: LinearLayout = findViewById(R.id.imageView14).parent
-//        appointmentButton.setOnClickListener {
-//            val intent = Intent(this, SetAppointmentActivity::class.java)
-//            startActivity(intent)
-//        }
-
    }
-
-
+    /**
+     * Loads user data from Firestore and displays it in the UI.
+     *
+     * @param userId The user's unique ID.
+     * @param welcomeText The TextView to display the welcome message.
+     */
     private fun loadUserData(userId: String,welcomeText: TextView) {
         lifecycleScope.launch {
             try {
-                // Fetch user data from Firestore
                 val data = firestoreClass.loadUserData(userId)
                 if (data != null) {
                     val userName=data.getValue("name")
                     welcomeText.text = "Good to see you again $userName!"
-                    //Toast.makeText(this@MainUser, "Welcome back!", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@MainUser, "No user data found.", Toast.LENGTH_SHORT).show()
                 }

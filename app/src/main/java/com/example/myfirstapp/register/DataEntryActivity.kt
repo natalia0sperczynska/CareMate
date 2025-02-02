@@ -18,7 +18,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.launch
 import java.util.Calendar
-
+/**
+ * DataEntryActivity is responsible for the user registration process, including collecting user details,
+ * validating inputs, and storing the data in Firestore after successful registration.
+ * It also includes functionality for selecting the user's birthdate using a DatePickerDialog.
+ *
+ * @param savedInstanceState The saved instance state of the activity, passed from the system if available.
+ */
 class DataEntryActivity : BaseActivity() {
 
     private var registerButton: Button? = null
@@ -28,7 +34,12 @@ class DataEntryActivity : BaseActivity() {
     private val inputDateOfBirth: EditText? = null
     private var inputPassword: EditText? = null
     private var inputRepeatPassword: EditText? = null
-
+    /**
+     * Called when the activity is created.
+     * Initializes the UI components and sets up event listeners for registration.
+     *
+     * @param savedInstanceState The saved instance state.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data_entry)
@@ -48,9 +59,8 @@ class DataEntryActivity : BaseActivity() {
             startActivity(intent)
 
         }
-
         /**
-         * Sets up a listener for the birth date button to display a DatePicker dialog.
+         * Listener for showing the DatePickerDialog to select the user's birthdate.
          */
         birthDateButton.setOnClickListener {
             val calendar = Calendar.getInstance()
@@ -69,6 +79,12 @@ class DataEntryActivity : BaseActivity() {
         }
 
 }
+    /**
+     * Validates the user's input data during the registration process.
+     * It checks if all the required fields are filled out and ensures the password matches the required pattern.
+     *
+     * @return True if the input is valid, otherwise false.
+     */
         private fun validateRegisterDetails(): Boolean {
             val passwordPattern = Regex("^(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&])[A-Za-z\\d@\$!%*?&]{8,}$")
 
@@ -117,7 +133,11 @@ class DataEntryActivity : BaseActivity() {
                 else -> true
             }
         }
-
+    /**
+     * Registers a new user by creating an account with the provided email and password.
+     * After successful registration, the user data is saved to Firestore and the user is signed out from Firebase.
+     * Displays appropriate messages based on success or failure.
+     */
         private fun registerUser() {
             if (validateRegisterDetails()) {
                 val email = inputEmail?.text.toString().trim { it <= ' ' }
@@ -170,7 +190,9 @@ class DataEntryActivity : BaseActivity() {
                         }
                     }
         }
-
+        /**
+         * Displays a success message after a user has been successfully registered.
+         */
         fun userRegistrationSuccess() {
             Toast.makeText(
                 this@DataEntryActivity,

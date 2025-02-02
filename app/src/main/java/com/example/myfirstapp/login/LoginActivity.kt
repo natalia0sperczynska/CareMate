@@ -9,7 +9,11 @@ import com.example.myfirstapp.mainViews.BaseActivity
 import com.example.myfirstapp.mainViews.MainUser
 import com.example.myfirstapp.register.DataEntryActivity
 import com.google.firebase.auth.FirebaseAuth
-
+/**
+ * Activity for handling user login.
+ * Allows the user to log in using their email and password.
+ * Provides a link to the registration activity if the user doesn't have an account.
+ */
 class LoginActivity : BaseActivity() {
 
     private var inputEmail: EditText? = null
@@ -35,10 +39,10 @@ class LoginActivity : BaseActivity() {
             startActivity(intent)
         }
     }
-
     /**
-     * Validates the login details entered by the user.
-     * @return True if the details are valid, otherwise False.
+     * Function validates the login details entered by the user.
+     *
+     * @return True if the email and password are valid, false otherwise.
      */
     private fun validateLoginDetails(): Boolean {
         val email = inputEmail?.text.toString().trim { it <= ' ' }
@@ -56,21 +60,19 @@ class LoginActivity : BaseActivity() {
             }
 
             else -> {
-                // Optionally show a success message
                 true
             }
         }
     }
-
     /**
-     * Logs in a registered user using Firebase Authentication.
+     * Attempts to log in the user using Firebase Authentication.
+     * If successful, the user is redirected to the main user activity.
      */
     private fun logInRegisteredUser() {
         if (validateLoginDetails()) {
             val email = inputEmail?.text.toString().trim { it <= ' ' }
             val password = inputPassword?.text.toString().trim { it <= ' ' }
 
-            // Sign in with FirebaseAuth
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -82,9 +84,8 @@ class LoginActivity : BaseActivity() {
                 }
         }
     }
-
     /**
-     * Navigates to the main user activity after successful login and passes the user's UID to the main activity.
+     * Navigates to the main user activity after successful login.
      */
     open fun goToMainUser() {
         val user = FirebaseAuth.getInstance().currentUser

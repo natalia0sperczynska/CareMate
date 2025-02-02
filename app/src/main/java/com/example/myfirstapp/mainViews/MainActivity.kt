@@ -13,32 +13,33 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.myfirstapp.register.DataEntryActivity
 import com.example.myfirstapp.login.LoginActivity
 import com.example.myfirstapp.R
-
+/**
+ * Main activity shown when the app starts.
+ * Handles permissions for notifications and navigation to login or registration.
+ */
 class MainActivity : AppCompatActivity() {
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
     ) { isGranted: Boolean ->
         if (isGranted) {
-            // FCM SDK (and your app) can post notifications.
         } else {
             // TODO: Inform user that that your app will not show notifications.
         }
     }
-
+    /**
+     * Requests permission to send notifications if not already granted.
+     */
     private fun askNotificationPermission() {
-        // This is only necessary for API level >= 33 (TIRAMISU)
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
             PackageManager.PERMISSION_GRANTED
         ) {
-            // FCM SDK (and your app) can post notifications.
         } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
             // TODO: display an educational UI explaining to the user the features that will be enabled
             //       by them granting the POST_NOTIFICATION permission. This UI should provide the user
             //       "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
             //       If the user selects "No thanks," allow the user to continue without notifications.
         } else {
-            // Directly ask for the permission
             requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
     }
@@ -70,13 +71,4 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-//    rules_version = '2';
-//
-//    service cloud.firestore {
-//        match /databases/{database}/documents {
-//            match /{document=**} {
-//                allow read, write: if false;
-//            }
-//        }
-//    }
 }

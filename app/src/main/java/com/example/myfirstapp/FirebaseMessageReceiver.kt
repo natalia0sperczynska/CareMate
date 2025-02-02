@@ -13,13 +13,25 @@ import androidx.test.core.app.ApplicationProvider
 import com.example.myfirstapp.mainViews.MainActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-
+/**
+ * Firebase messaging service receiver for handling incoming messages and displaying notifications.
+ */
 class FirebaseMessageReceiver : FirebaseMessagingService() {
-
+    /**
+     * Called when a new token is generated for the device. This method is called when a new registration token
+     * is issued to the device by Firebase Cloud Messaging (FCM).
+     *
+     * @param token The new FCM token generated for the device.
+     */
     override fun onNewToken(token: String) {
         super.onNewToken(token)
     }
-
+    /**
+     * Called when a message is received from Firebase Cloud Messaging.
+     * If the message contains a notification, it will display a notification to the user.
+     *
+     * @param remoteMessage The message received from FCM.
+     */
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         if (remoteMessage.getNotification() != null) {
             showNotification(
@@ -28,7 +40,13 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
             )
         }
     }
-
+    /**
+     * Creates a custom layout for the notification to be shown to the user.
+     *
+     * @param title The title to be displayed in the notification.
+     * @param message The message to be displayed in the notification.
+     * @return A RemoteViews object containing the custom layout.
+     */
     @SuppressLint("RemoteViewLayout")
     private fun getCustomDesign(
         title: String,
@@ -42,7 +60,12 @@ class FirebaseMessageReceiver : FirebaseMessagingService() {
         remoteViews.setTextViewText(R.id.message, message)
         return remoteViews
     }
-
+    /**
+     * Displays the notification with the provided title and message.
+     *
+     * @param title The title to be displayed in the notification.
+     * @param message The message to be displayed in the notification.
+     */
     @SuppressLint("UnspecifiedImmutableFlag")
     private fun showNotification(title: String, message: String) {
         val intent = Intent(this, MainActivity::class.java).apply {
