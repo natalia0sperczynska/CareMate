@@ -4,6 +4,7 @@ compiler = "4.14.2"
 compilerVersion = "4.15.1"
 coreKtxVersion = "2.2.0"
 firebaseBom = "33.6.0"
+firebaseMessagingVersion = "24.2.0"
 glide = "4.14.2"
 glideVersion = "4.15.1"
 googlePlaces = "3.5.0"
@@ -25,6 +26,7 @@ googleAndroidLibrariesMapsplatformSecretsGradlePlugin = "2.0.1"
 places = "4.1.0"
 placesVersion = "3.3.0"
 playServices = "17.0.0'"
+playServicesBase = "18.5.0"
 playServicesLocation = "21.3.0"
 playServicesMaps = "18.1.0"
 playServicesMapsVersion = "19.0.0"
@@ -42,6 +44,7 @@ compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compi
 compiler-v4151 = { module = "com.github.bumptech.glide:compiler", version.ref = "compilerVersion" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-messaging-v2420 = { module = "com.google.firebase:firebase-messaging", version.ref = "firebaseMessagingVersion" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-v4151 = { module = "com.github.bumptech.glide:glide", version.ref = "glideVersion" }
 gms-google-services = { module = "com.google.gms:google-services" }
@@ -59,6 +62,7 @@ firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx",
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 material-v190 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 places = { module = "com.google.android.libraries.places:places", version.ref = "places" }
+play-services-base = { module = "com.google.android.gms:play-services-base", version.ref = "playServicesBase" }
 places-v330 = { module = "com.google.android.libraries.places:places", version.ref = "placesVersion" }
 places-v350 = { module = "com.google.android.libraries.places:places", version.ref = "googlePlaces" }
 play-services = { module = "implementation 'com.google.android.gms:play-services", version.ref = "playServices" }

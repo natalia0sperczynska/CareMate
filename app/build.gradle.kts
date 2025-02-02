@@ -9,10 +9,9 @@ android {
     namespace = "com.example.myfirstapp"
     compileSdk = 35
 
-
     defaultConfig {
         applicationId = "com.example.myfirstapp"
-        minSdk = 34
+        minSdk = 31
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -71,5 +70,5 @@ dependencies {
     implementation(platform(libs.kotlin.bom.v180))
     implementation(libs.places.v350)
 
+    implementation(libs.play.services.base)
 }
-

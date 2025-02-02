@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.myfirstapp.MapsActivity
 import com.example.myfirstapp.bmi.BMIActivity
 import com.example.myfirstapp.R
+import com.example.myfirstapp.SetNotificationActivity
 import com.example.myfirstapp.doctorsView.DoctorsRecyclerView
 import com.example.myfirstapp.firebase.FireStore
 import com.example.myfirstapp.updateData.UpdateDataActivity
@@ -79,6 +80,32 @@ class MainUser : AppCompatActivity() {
             val intent = Intent(this, BMIActivity::class.java)
             startActivity(intent)
         }
+        val notification: LinearLayout = findViewById(R.id.Notifications)
+
+
+        notification.setOnClickListener {
+            val intent = Intent(this, SetNotificationActivity::class.java)
+            startActivity(intent)
+        }
+
+//        val notificationsButton: LinearLayout = findViewById(R.id.imageView12).parent
+//        notificationsButton.setOnClickListener {
+//            val intent = Intent(this, NotificationsActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        val calendarButton: LinearLayout = findViewById(R.id.imageView13).parent
+//        calendarButton.setOnClickListener {
+//            val intent = Intent(this, CalendarActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        val appointmentButton: LinearLayout = findViewById(R.id.imageView14).parent
+//        appointmentButton.setOnClickListener {
+//            val intent = Intent(this, SetAppointmentActivity::class.java)
+//            startActivity(intent)
+//        }
+
    }
     /**
      * Loads user data from Firestore and displays it in the UI.
