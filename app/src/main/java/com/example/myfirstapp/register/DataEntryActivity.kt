@@ -168,7 +168,7 @@ class DataEntryActivity : BaseActivity() {
                                 dateOfBirth = dateOfBirth,
                                 phoneNumber = "",
                                 profilePictureUrl = "" ,
-                                address = mapOf(), // Default empty map
+                                address = mapOf(),
                                 allergies = listOf(),
                                 diseases= listOf(),
                                 medications = listOf()

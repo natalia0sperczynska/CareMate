@@ -1,4 +1,4 @@
-package com.example.myfirstapp
+package com.example.myfirstapp.notifications
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -9,10 +9,21 @@ import android.content.Intent
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.example.myfirstapp.R
 import java.time.LocalDateTime
 import java.util.Calendar
-
+/**
+ * BroadcastReceiver for handling alarm events.
+ * This class is triggered when an alarm is received and schedules the next alarm.
+ */
 class AlarmReceiver : BroadcastReceiver() {
+    /**
+     * Called when the alarm is triggered.
+     * Displays a notification and schedules the next alarm for the following day.
+     *
+     * @param context The application context.
+     * @param intent The received intent containing alarm details.
+     */
     override fun onReceive(context: Context, intent: Intent) {
         val alarmMessage = intent.getStringExtra("EXTRA_MESSAGE") ?: "Time to take your meds!"
         Log.d("AlarmReceiver", "Alarm received: $alarmMessage")
@@ -31,6 +42,13 @@ class AlarmReceiver : BroadcastReceiver() {
         )
         AlarmSchedulerImpl(context).schedule(alarmItem)
     }
+    /**
+     * Displays a notification when the alarm is triggered.
+     *
+     * @param context The application context.
+     * @param title The title of the notification.
+     * @param message The message content of the notification.
+     */
     private fun showNotification(context: Context, title: String, message: String) {
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

@@ -43,4 +43,5 @@ class DoctorDetailActivity : AppCompatActivity() {
             imageView.setImageResource(R.drawable.profile_pic)
         }
     }
+
 }

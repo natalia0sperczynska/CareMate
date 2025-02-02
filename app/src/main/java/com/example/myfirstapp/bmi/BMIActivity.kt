@@ -40,11 +40,8 @@ class BMIActivity : AppCompatActivity() {
             insets
         }
         val userId=auth.currentUser?.uid
-        inputHeight = findViewById(R.id.height)
-        inputWeight = findViewById(R.id.weight)
-        result = findViewById(R.id.result)
-        calculateButton = findViewById(R.id.calculateBmi)
-        goBack = findViewById(R.id.goBack)
+        setup()
+
 
         goBack.setOnClickListener {
             val intent = Intent(this, MainUser::class.java)
@@ -89,6 +86,16 @@ class BMIActivity : AppCompatActivity() {
             bmi < 29.9 -> "You are overweight."
             else -> "You are obese."
         }
+    }
+    /**
+     * Initializes UI elements.
+     */
+    private fun setup(){
+        inputHeight = findViewById(R.id.height)
+        inputWeight = findViewById(R.id.weight)
+        result = findViewById(R.id.result)
+        calculateButton = findViewById(R.id.calculateBmi)
+        goBack = findViewById(R.id.goBack)
     }
 
 }

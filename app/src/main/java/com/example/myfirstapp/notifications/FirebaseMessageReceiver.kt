@@ -1,4 +1,4 @@
-package com.example.myfirstapp
+package com.example.myfirstapp.notifications
 
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
@@ -10,6 +10,7 @@ import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.test.core.app.ApplicationProvider
+import com.example.myfirstapp.R
 import com.example.myfirstapp.mainViews.MainActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage

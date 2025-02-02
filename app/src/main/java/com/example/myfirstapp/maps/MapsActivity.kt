@@ -1,4 +1,4 @@
-package com.example.myfirstapp
+package com.example.myfirstapp.maps
 import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
@@ -12,6 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.myfirstapp.BuildConfig
+import com.example.myfirstapp.R
 import com.example.myfirstapp.databinding.ActivityMapsBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap

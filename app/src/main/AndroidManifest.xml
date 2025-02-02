@@ -25,7 +25,7 @@
             android:required="false" />
 
         <activity
-            android:name=".SetNotificationActivity"
+            android:name=".notifications.SetNotificationActivity"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -47,7 +47,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".MapsActivity2"
+            android:name=".other.MapsActivity2"
             android:exported="false"
             android:label="@string/title_activity_maps2" />
         <!--
@@ -65,7 +65,7 @@
         <!-- android:name="com.google.android.geo.AIzaSyDrygYY3nhZw8ILlu-sIuX39Sb3sTO8TT8" -->
         <!-- android:value="AIzaSyDrygYY3nhZw8ILlu-sIuX39Sb3sTO8TT8" /> -->
         <activity
-            android:name=".MapsActivity"
+            android:name=".maps.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" /> <!-- <activity -->
         <!-- android:name=".mainViews.MainAdminActivity" -->
@@ -110,13 +110,13 @@
             android:theme="@style/Theme.AppCompat.Light" />
 
         <service
-            android:name=".FirebaseMessageReceiver"
+            android:name=".notifications.FirebaseMessageReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <receiver android:name=".AlarmReceiver" android:exported="false"/>
+        <receiver android:name=".notifications.AlarmReceiver" android:exported="false"/>
     </application>
 
 </manifest>

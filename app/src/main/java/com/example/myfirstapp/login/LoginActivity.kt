@@ -24,7 +24,6 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Initialize input fields and login button
         inputEmail = findViewById(R.id.editTextTextEmailAddressLogin)
         inputPassword = findViewById(R.id.editTextTextPasswordLogin)
         loginButton = findViewById(R.id.loginButton)
@@ -89,7 +88,7 @@ class LoginActivity : BaseActivity() {
      */
     open fun goToMainUser() {
         val user = FirebaseAuth.getInstance().currentUser
-        val email = user?.email.orEmpty() // User email
+        val email = user?.email.orEmpty()
 
         val intent = Intent(this, MainUser::class.java).apply {
             putExtra("uID", email)

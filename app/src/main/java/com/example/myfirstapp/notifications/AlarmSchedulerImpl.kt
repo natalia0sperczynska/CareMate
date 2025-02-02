@@ -1,4 +1,4 @@
-package com.example.myfirstapp
+package com.example.myfirstapp.notifications
 
 import android.annotation.SuppressLint
 import android.app.AlarmManager
@@ -6,13 +6,17 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import java.time.ZoneId
 import java.util.Calendar
 
+/**
+ * Implementation of the AlarmScheduler interface.
+ * Provides methods for scheduling and canceling alarms.
+ */
 class AlarmSchedulerImpl(
     private val context: Context
 ) : AlarmScheduler {
     private val alarmManager = context.getSystemService(AlarmManager::class.java)
+    private val scheduledAlarms = mutableListOf<AlarmItem>()
 
     @SuppressLint("ScheduleExactAlarm")
     override fun schedule(alarmItem: AlarmItem) {
@@ -39,13 +43,14 @@ class AlarmSchedulerImpl(
             }
         }
 
-        Log.d("AlarmSchedulerImpl", "Setting alarm for: ${calendar.time}")
+        Log.d("AlarmSchedulerImpl", "lala: ${calendar.time}")
 
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
             pendingIntent
         )
+        scheduledAlarms.add(alarmItem)
     }
 
 
@@ -58,5 +63,10 @@ class AlarmSchedulerImpl(
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
         )
+    }
+
+    override fun clearAll() {
+        scheduledAlarms.forEach { cancel(it) }
+        scheduledAlarms.clear()
     }
 }

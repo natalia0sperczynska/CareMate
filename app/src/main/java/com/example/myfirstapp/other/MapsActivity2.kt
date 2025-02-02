@@ -1,7 +1,8 @@
-package com.example.myfirstapp
+package com.example.myfirstapp.other
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.myfirstapp.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -22,7 +23,6 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMaps2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)

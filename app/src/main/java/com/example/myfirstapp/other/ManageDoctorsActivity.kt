@@ -1,4 +1,4 @@
-package com.example.myfirstapp
+package com.example.myfirstapp.other
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.myfirstapp.R
 import com.example.myfirstapp.firebase.FireStore
 import com.example.myfirstapp.mainViews.MainAdminActivity
 import com.google.firebase.Firebase

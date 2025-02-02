@@ -16,7 +16,6 @@ import kotlinx.coroutines.launch
  */
 class UpdateDataActivity : AppCompatActivity() {
 
-    // UI components for collecting and displaying user data
     private lateinit var nameInput: EditText
     private lateinit var surnameInput:EditText
     private lateinit var emailInput: EditText
@@ -29,7 +28,6 @@ class UpdateDataActivity : AppCompatActivity() {
     private lateinit var cancelButton: Button
     private lateinit var profileImageView: ImageView
 
-    // Firebase authentication and Firestore class instances
     private val auth = FirebaseAuth.getInstance()
     private val firestoreClass = FireStore()
 
@@ -37,20 +35,17 @@ class UpdateDataActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_data)
 
-        // Initialize UI components
         initializeUI()
 
         val userId = auth.currentUser?.uid
 
         if (userId != null) {
-            // Load user data asynchronously using FirestoreClass
             lifecycleScope.launch {
                 try {
-                    // Fetch user data from Firestore
-                    val data = firestoreClass.loadUserData(userId) // Suspend function
+                    val data = firestoreClass.loadUserData(userId)
                     if (data != null) {
-                        val user = User.fromMap(data) // Convert Firestore data to a User object
-                        populateUI(user) // Populate UI with user data
+                        val user = User.fromMap(data)
+                        populateUI(user)
                     } else {
                         Toast.makeText(this@UpdateDataActivity, "No user data found.", Toast.LENGTH_SHORT).show()
                     }
@@ -60,20 +55,18 @@ class UpdateDataActivity : AppCompatActivity() {
             }
         }
 
-        // Handle submit button click to save updated user data
         submitButton.setOnClickListener {
             if (userId != null) {
                 lifecycleScope.launch {
-                    updateUserData(userId) // Save data asynchronously
+                    updateUserData(userId)
                 }
             } else {
                 Toast.makeText(this, "User not logged in.", Toast.LENGTH_SHORT).show()
             }
         }
 
-        // Handle cancel button click to exit without saving
         cancelButton.setOnClickListener {
-            finish() // Close the activity without changes
+            finish()
         }
     }
 
@@ -100,28 +93,25 @@ class UpdateDataActivity : AppCompatActivity() {
      * @param user The User object containing the data to display.
      */
     private fun populateUI(user: User) {
-        nameInput.setText(user.name ?: "") // Set user name in the EditText
+        nameInput.setText(user.name ?: "")
         surnameInput.setText(user.surname ?: "")
-        emailInput.setText(user.email) // Set user email in the EditText
-        phoneInput.setText(user.phoneNumber) // Set user phone number in the EditText
+        emailInput.setText(user.email)
+        phoneInput.setText(user.phoneNumber)
 
-        // Convert the address map to a single string and display it
         val address = user.address.values.joinToString(", ")
         addressInput.setText(address)
 
-        // Convert the list of interests to a comma-separated string and display it
         allergiesInput.setText(user.allergies.joinToString(", "))
         diseasesInput.setText(user.diseases.joinToString(", "))
         medicationsInput.setText(user.medications.joinToString(", "))
 
-        // Load the profile picture using Glide, with a placeholder for fallback
         if (user.profilePictureUrl.isNotEmpty()) {
             Glide.with(this)
                 .load(Uri.parse(user.profilePictureUrl))
-                .placeholder(R.drawable.profile_pic) // Placeholder while the image loads
+                .placeholder(R.drawable.profile_pic)
                 .into(profileImageView)
         } else {
-            profileImageView.setImageResource(R.drawable.profile_pic) // Default image if no profile picture is set
+            profileImageView.setImageResource(R.drawable.profile_pic)
         }
     }
 
@@ -131,7 +121,6 @@ class UpdateDataActivity : AppCompatActivity() {
      * @param userId The ID of the user being updated.
      */
     private suspend fun updateUserData(userId: String) {
-        // Parse the address from a comma-separated string into a structured map
         val addressParts = addressInput.text.toString().split(",").map { it.trim() }
         val addressMap = if (addressParts.size == 3) {
             mapOf(
@@ -140,10 +129,9 @@ class UpdateDataActivity : AppCompatActivity() {
                 "postcode" to addressParts[2]
             )
         } else {
-            mapOf() // Default empty map if address format is incorrect
+            mapOf()
         }
 
-        // Prepare the updated data as a map
         val updatedData = mapOf(
             "name" to nameInput.text.toString(),
             "surname" to surnameInput.text.toString(),
@@ -152,15 +140,14 @@ class UpdateDataActivity : AppCompatActivity() {
             "address" to addressMap,
             "allergies" to allergiesInput.text.toString().split(",").map { it.trim() },
             "diseases" to diseasesInput.text.toString().split(",").map { it.trim() },
-            "medications" to medicationsInput.text.toString().split(",").map { it.trim() }// Convert comma-separated string to a list
+            "medications" to medicationsInput.text.toString().split(",").map { it.trim() }
         )
 
         try {
-            // Save the updated data to Firestore
-            firestoreClass.updateUserData(userId, updatedData) // Suspend function
+            firestoreClass.updateUserData(userId, updatedData)
             Toast.makeText(this, "Data updated successfully!", Toast.LENGTH_SHORT).show()
-            setResult(RESULT_OK) // Notify the calling activity that data was updated
-            finish() // Close the activity
+            setResult(RESULT_OK)
+            finish()
         } catch (e: Exception) {
             Toast.makeText(this, "Failed to update data: ${e.message}", Toast.LENGTH_SHORT).show()
         }
